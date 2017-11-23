@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/radeon/radeon_drv.c radeon_drm_ioctl [1/1]
+** BUG d7f20534049056714a776fcc846917de30e36624
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].15.8.3.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %return
+   --         returns [0]
+   @

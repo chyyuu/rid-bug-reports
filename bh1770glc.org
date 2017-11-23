@@ -1,0 +1,22 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/misc/bh1770glc.c bh1770_power_state_store [0/2]
+** TODO 14451cc329036483167fc298691a9874cef5d16b
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then3 %if.end10 %if.end17 %if.end24 %leave %return
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [4]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.else %if.end23 %if.end24 %leave %return
+   --         returns [4]
+** TODO ba025c70c1257714d0d188aaf22c087957e3e12e
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then3 %if.end10 %if.end17 %if.end24 %leave %return
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [4]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.else %if.then21 %if.end23 %if.end24 %leave %return
+   --         [1]:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns [4]

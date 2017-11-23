@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/platform/soc_camera/sh_mobile_csi2.c sh_csi2_s_mbus_config [0/1]
+** TODO 0beb29ec3d5d9e500b90c56454e9f76aedc59764
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %cond.false %land.lhs.true %cond.true9 %cond.end %cond.end15 %return
+   --         [1].-0.4.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]

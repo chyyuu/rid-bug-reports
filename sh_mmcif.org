@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sh_mmcif.c sh_mmcif_set_ios [0/1]
+** TODO ed8be40a865afe8c07f28055cdfd17e123149242
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.body %do.body1 %do.end %do.end4 %if.then %do.body7 %do.body8 %if.end %do.end12 %do.end13 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %do.body %do.body1 %do.end %do.end4 %if.end15 %if.else %lor.lhs.false %if.then33 %if.end44 %if.then46 %if.end56 %if.end57 %return
+   --         [1].66.2.3:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1

@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/misc/usbsevseg.c update_display_powered [0/1]
+** TODO ee52920645eae97431b9f014c8182d7f8aea78c1
+   -- Case 1 (existing summary):
+   --     %entry %2 %land.lhs.true %if.then %if.then3 %if.end38
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %land.lhs.true %if.then %if.end %if.end5 %if.then9 %if.end38
+   --         [1].1.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1

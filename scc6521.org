@@ -1,0 +1,21 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/stkwebcam/stk-webcam.c v4l_stk_open [0/1]
+** TODO bbbfa294ecf54558afe7b11002ebb2d74b4f5cdc
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.end4 %if.then6 %if.end9 %if.then12 %if.end14 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.end4 %if.then6 %if.end9 %if.then12 %if.end14 %return
+   --         [video_device].2.9.4.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/stkwebcam/stk-webcam.c v4l_stk_release [0/1]
+** TODO 259d9a82897393e5fe4a97990b014bbb421d696f
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end7
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then6 %if.end7
+   --         [video_device].2.9.4.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns 0

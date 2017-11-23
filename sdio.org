@@ -1,0 +1,22 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/wireless/ti/wlcore/sdio.c wl1271_probe [0/1]
+** TODO 7dd2fd167590d121d5eb5dbdf6d683b88bcba79b
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then2 %out %return
+   --         returns -12
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end4 %if.end18 %do.body %do.body20 %if.end25 %do.end %do.end26 %if.end31 %if.then37 %if.end38 %if.then42 %out_free_glue %out %return
+   --         [1].1:dpm -1
+   --         `-- pm_runtime_put_noidle [1]:dpm -1
+   --         returns -12
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/wireless/ti/wlcore/sdio.c wl12xx_sdio_set_power [0/1]
+** TODO 4c7688eb82d5e32adac14ed5bf904d67904d635d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %return
+   --         [1].0.9.0.-1.0.1:dpm -1
+   --         `-- wl12xx_sdio_power_off [1].0.-1.0.1:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns [0]

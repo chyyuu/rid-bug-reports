@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/pvrusb2/pvrusb2-hdw.c pvr2_hdw_device_reset [0/0]
+** 04cf100706839a9a7190a26840a751e7e87e5956
+   -- Case 1 (existing summary):
+   --     %entry %if.then2 %if.end23
+   --         [1].0.8.15.3.14.9.0:dpm +1
+   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %if.end23
+   --         -

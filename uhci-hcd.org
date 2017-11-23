@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/uhci-hub.c uhci_check_ports [0/0]
+** 8bc02077cd83ec20b9d0273a4bdcae6b0a08b139
+   -- Case 1 (existing summary):
+   --     %entry %for.cond %for.body %if.end42 %for.inc %for.cond %for.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %for.cond %for.body %if.end42 %if.then53 %for.inc %for.cond %for.end
+   --         [1].-33.0.13.11:dpm +1
+   --         `-- usb_hcd_start_port_resume [1].13.11:dpm +1
+   imprecise branch condition tracking (bitmap)

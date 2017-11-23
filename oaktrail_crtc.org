@@ -1,0 +1,20 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_crtc.c oaktrail_crtc_dpms [0/1]
+** TODO d157ab49fa5792d6dfcd46432fa847746fb0779b
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then6 %return
+   --         [1].0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_crtc.c oaktrail_crtc_mode_set [0/1]
+** TODO 6b7323b96de6df2fe3c1a363609639de6c6d4ae8
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].0.38.43:dpm +1
+   --         `-- oaktrail_crtc_hdmi_mode_set [1].0.38.43:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end9 %if.then10 %if.end13 %if.then19 %if.end23 %for.cond %for.end %for.cond41 %for.end45 %if.end49 %for.cond50 %for.end56 %if.end62 %if.then64 %for.cond74 %for.end113 %if.end163 %if.then170 %if.end173 %if.then175 %oaktrail_crtc_mode_set_exit %return
+   --         returns 0

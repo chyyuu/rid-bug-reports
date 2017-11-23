@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/wireless/libertas_tf/if_usb.c if_usb_disconnect [0/0]
+** e189a2553462497af9e896c37e82ea3243d0d915
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end %do.end23
+   --         [1].14.9.0.8.15.3.14.9.0:dpm +1
+   --         `-- if_usb_reset_device [1].0.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end %do.end23
+   --         -

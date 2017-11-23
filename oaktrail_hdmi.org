@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_hdmi.c oaktrail_crtc_hdmi_mode_set [0/1]
+** TODO 9f7316c8c2d5bacfce9d4de3ea1cdcda1ae93b69
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end23 %return
+   --         returns 0

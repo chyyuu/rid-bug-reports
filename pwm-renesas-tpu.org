@@ -1,0 +1,60 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/pwm/pwm-renesas-tpu.c tpu_pwm_disable [0/0]
+** be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         [2].5.1.0.3:dpm +1
+   --         `-- tpu_pwm_timer_start [1].1.0.3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         -
+** be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         0.1.0.3:dpm +1
+   --         `-- tpu_pwm_timer_start [1].1.0.3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/pwm/pwm-renesas-tpu.c tpu_pwm_enable [0/2]
+** TODO 65054125d454d9a74760456810e3aac4a7526e86
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %lor.lhs.false %if.end12 %return
+   --         [2].5.1.0.3:dpm +1
+   --         `-- tpu_pwm_timer_start [1].1.0.3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %lor.lhs.false %if.end12 %return
+   --         returns 0
+** TODO 65054125d454d9a74760456810e3aac4a7526e86
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %lor.lhs.false %if.end12 %return
+   --         0.1.0.3:dpm +1
+   --         `-- tpu_pwm_timer_start [1].1.0.3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %lor.lhs.false %if.end12 %return
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/pwm/pwm-renesas-tpu.c tpu_pwm_timer_start [0/1]
+** TODO 15f8e02dd4b86c2f666b5126396fc53d7b97377d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end10 %do.body %do.body11 %if.end22 %do.end %do.end23 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.end %if.end10 %do.body %do.body11 %if.end22 %do.end %do.end23 %return
+   --         [1].1.0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/pwm/pwm-renesas-tpu.c tpu_pwm_timer_stop [0/1]
+** TODO d7f20534049056714a776fcc846917de30e36624
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %return
+   --         [1].1.0.3:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1

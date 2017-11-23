@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/vub300.c __vub300_command_response [0/0]
+** 81b8e35df9daa0de5642f15058871c67b9129a50
+   -- Case 1 (existing summary):
+   --     %entry %if.then4 %if.end208
+   --         [1].0.8.15.3.14.9.0:dpm +1
+   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %if.end208
+   --         -

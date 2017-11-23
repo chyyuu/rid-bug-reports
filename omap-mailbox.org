@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/mailbox/omap-mailbox.c omap_mbox_startup [1/1]
+** BUG 7e2b6c526f39a2e7edd26ae13b7059e5243ad4d6
+   -- Case 1 (existing summary):
+   --     %entry %if.then %fail_startup %return
+   --         [1].parent.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.then1 %if.end5 %if.end9 %if.then13 %fail_request_irq %fail_alloc_rxq %fail_alloc_txq %fail_startup %return
+   --         returns [0]
+   @

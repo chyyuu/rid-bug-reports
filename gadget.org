@@ -1,0 +1,13 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/dwc2/gadget.c s3c_hsotg_phy_disable [1/1]
+** BUG f3c5c3593df119f16bc828c2fb7cb0333fac689e
+   -- Case 1 (existing summary):
+   --     %entry %if.else11 %if.end15
+   --         [1].2.0:dpm -1
+   --         `-- phy_exit [1].0:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %if.else11 %if.end15
+   --         [1].2.0:dpm -2
+   --         +-- phy_exit [1].0:dpm -1
+   --         `-- phy_power_off [1].0:dpm -1
+   neglect possible error

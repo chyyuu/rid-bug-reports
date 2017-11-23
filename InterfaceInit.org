@@ -1,0 +1,96 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/InterfaceInit.c InterfaceAdapterFree [0/1]
+** TODO 08ca2853f867a897ea2ef65575757d21a66a6497
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %for.cond34 %for.inc55 %for.cond34 %for.end57
+   --         [1].14.73.0.8.15.3.14.9.0:dpm +1
+   --         `-- reset_card_proc [1].73.0.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %for.cond34 %for.inc55 %for.cond34 %for.end57
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/InterfaceInit.c InterfaceAdapterInit [0/0]
+** d1bff939b425a91aea13c75aa30b211a5df66b37
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end12 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end12 %if.end23 %if.then30 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         [1].0.8.15.3.14.9.0:dpm +1
+   --         `-- select_alternate_setting_for_highspeed_modem [1].0.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         returns [0]
+** d1bff939b425a91aea13c75aa30b211a5df66b37
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end12 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end12 %if.end23 %if.then30 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         {%call15}.0:dpm +1
+   --         `-- select_alternate_setting_for_highspeed_modem {%call15}.0:dpm +1
+   --             `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns [0]
+** d1bff939b425a91aea13c75aa30b211a5df66b37
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end12 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end12 %if.end23 %if.then30 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         [1].0.15.3.14:dpm -1
+   --         `-- select_alternate_setting_for_highspeed_modem [1].0.15.3.14:dpm -1
+   --             `-- usb_reset_device [1].15.3.14:dpm -1
+   --         [1].0.8.15.3.14.9.0:dpm +1
+   --         `-- select_alternate_setting_for_highspeed_modem [1].0.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         returns [0]
+** d1bff939b425a91aea13c75aa30b211a5df66b37
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end12 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end12 %if.end23 %if.then30 %for.cond %for.inc %for.cond %for.end %if.end158 %if.end162 %return
+   --         [1].0.15.3.14:dpm -2
+   --         `-- select_alternate_setting_for_highspeed_modem [1].0.15.3.14:dpm -2
+   --             `-- usb_reset_device [1].15.3.14:dpm -2
+   --         [1].0.8.15.3.14.9.0:dpm +1
+   --         `-- select_alternate_setting_for_highspeed_modem [1].0.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/InterfaceInit.c usbbcm_device_probe [0/0]
+** e35b11e21f3653e2e54faae2cd6390a5cc0bcd22
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %do.end25 %if.end30 %do.end60 %do.end120 %return
+   --         {%call31}.14.73.0.8.15.3.14.9.0:dpm +1
+   --         `-- InterfaceAdapterFree [1].14.73.0.8.15.3.14.9.0:dpm +1
+   --             `-- reset_card_proc [1].73.0.8.15.3.14.9.0:dpm +1
+   --                 `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %do.end25 %if.end30 %do.end60 %do.end120 %return
+   --         {%call15}.0:dpm +1
+   --         `-- InterfaceAdapterFree {%call15}.0:dpm +1
+   --             `-- reset_card_proc {%call15}.0:dpm +1
+   --                 `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns [0]
+** e35b11e21f3653e2e54faae2cd6390a5cc0bcd22
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %do.end25 %if.end30 %do.end60 %do.end120 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %do.end25 %if.end30 %do.end60 %do.end120 %return
+   --         {%call31}.14.73.0.15.3.14:dpm -1
+   --         `-- InterfaceAdapterFree [1].14.73.0.15.3.14:dpm -1
+   --             `-- reset_card_proc [1].73.0.15.3.14:dpm -1
+   --                 `-- usb_reset_device [1].15.3.14:dpm -1
+   --         returns [0]
+** e35b11e21f3653e2e54faae2cd6390a5cc0bcd22
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %do.end25 %if.end30 %do.end60 %do.end120 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %do.end25 %if.end30 %do.end60 %do.end120 %return
+   --         {%call31}.14.73.0.15.3.14:dpm -2
+   --         `-- InterfaceAdapterFree [1].14.73.0.15.3.14:dpm -2
+   --             `-- reset_card_proc [1].73.0.15.3.14:dpm -2
+   --                 `-- usb_reset_device [1].15.3.14:dpm -2
+   --         returns [0]

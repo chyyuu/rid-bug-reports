@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/serial/usb_wwan.c usb_wwan_write [0/0]
+** b80437b1182fef580e5890c976f101c5bf62af4c
+   -- Case 1 (existing summary):
+   --     %entry %for.cond %land.rhs %land.end %if.end8 %do.end42 %if.end98 %for.inc %for.cond %land.end %for.end %do.end114
+   --         [2].0.2.14:dpm +1
+   --         `-- usb_autopm_get_interface_async [1].14:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %for.cond %land.rhs %land.end %if.end8 %do.end42 %do.end92 %for.end %do.end114
+   --         returns [0]
+   imprecise branch condition tracking

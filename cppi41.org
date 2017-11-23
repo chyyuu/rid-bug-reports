@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/dma/cppi41.c  cppi41_dma_probe [1/1]
+** BUG 41846da2b0a88f472e9b3667bd9b79691b053baf
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end35 %if.end38 %if.end45 %if.end49 %if.end54 %if.end60 %err_dma_reg %err_irq %err_chans %err_init_cppi %err_get_sync %err_remap %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end35 %err_get_sync %err_remap %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

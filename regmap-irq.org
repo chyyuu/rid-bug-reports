@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/base/regmap/regmap-irq.c regmap_irq_thread [0/1]
+** TODO 6f5683f48e1ecae2b300bf9e49447d0e84b335c3
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.then3 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.end %if.end8 %land.lhs.true %land.lhs.true11 %if.then13 %do.body %if.end23 %do.end25 %if.then30 %return
+   --         [2].2.6:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0

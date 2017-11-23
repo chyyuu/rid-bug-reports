@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/scsi/sr.c        sr_remove [1/1]
+** BUG be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         [1].9.2.91:dpm +1
+   --         `-- scsi_autopm_get_device [1].91:dpm +1
+   --         returns 0
+   neglect possible error

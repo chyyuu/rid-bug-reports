@@ -1,0 +1,39 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/hid/usbhid/hid-core.c hid_ctrl [0/1]
+** TODO 5cae7cbb588c06007e76f6d20b3a0a7f7ea88cb1
+   -- Case 1 (existing summary):
+   --     %entry %2 %NodeBlock21 %NodeBlock19 %NodeBlock17 %LeafBlock15 %sw.bb %if.end %sw.epilog %if.else %land.lhs.true %if.then27 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %NodeBlock21 %NodeBlock19 %NodeBlock17 %LeafBlock15 %sw.bb %if.end %sw.epilog %if.else %land.lhs.true %if.end29 %if.end30 %return
+   --         [1].27.39.1.14:dpm -1
+   --         `-- usb_autopm_put_interface_async [1].14:dpm -1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/hid/usbhid/hid-core.c hid_irq_out [0/1]
+** TODO 691c15e89be680e575fdec77a2ff157c64cdb52f
+   -- Case 1 (existing summary):
+   --     %entry %2 %NodeBlock17 %NodeBlock15 %NodeBlock13 %LeafBlock11 %sw.bb %sw.epilog %do.body %do.body5 %do.end %do.end8 %if.else %land.lhs.true %if.then22 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %NodeBlock17 %NodeBlock15 %NodeBlock13 %LeafBlock11 %sw.bb %sw.epilog %do.body %do.body5 %do.end %do.end8 %if.else %land.lhs.true %if.end %if.end24 %return
+   --         [1].27.39.1.14:dpm -1
+   --         `-- usb_autopm_put_interface_async [1].14:dpm -1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/hid/usbhid/hid-core.c usbhid_restart_ctrl_queue [0/1]
+** TODO cf1cb75eac8d858670685bd0bf6872e0520dd972
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %lor.lhs.false %cond.true %lor.lhs.false8 %cond.true9 %if.end18 %if.then22 %do.body %do.body23 %if.end31 %do.end %do.end32 %if.then37 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %lor.lhs.false %cond.true %lor.lhs.false8 %cond.true9 %if.end18 %if.then22 %do.body %do.body23 %if.end31 %do.end %do.end32 %if.end38 %cond.true39 %if.end49 %if.end56 %if.end57 %return
+   --         [1].1.14:dpm +1
+   --         `-- usb_autopm_get_interface_async [1].14:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/hid/usbhid/hid-core.c usbhid_restart_out_queue [0/1]
+** TODO 79629d8e8f75b84b980d5b35946ec35f47053c8e
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %cond.true %lor.lhs.false6 %cond.true7 %if.end %if.then17 %do.body %do.body18 %if.end26 %do.end %do.end27 %if.then32 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %cond.true %lor.lhs.false6 %cond.true7 %if.end %if.then17 %do.body %do.body18 %if.end26 %do.end %do.end27 %if.end33 %cond.true34 %if.end44 %if.end51 %if.end52 %return
+   --         [1].1.14:dpm +1
+   --         `-- usb_autopm_get_interface_async [1].14:dpm +1
+   --         returns [0]

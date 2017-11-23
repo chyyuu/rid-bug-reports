@@ -1,0 +1,21 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/atm/speedtch.c speedtch_bind [0/1]
+** TODO 46ead3a240eb0e7b8f951455818931a0c76420fd
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end15 %for.cond %for.body %if.then29 %if.then33 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end15 %for.cond %for.body %for.inc %for.cond %for.end %if.else %if.end57 %if.end108 %if.end109 %if.end140 %if.then146 %fail_free %fail_release %return
+   --         [2].14.0.-11.15.0.3.14.0.-11.15.3.14:dpm -1
+   --         `-- speedtch_release_interfaces [1].15.3.14:dpm -1
+   --             `-- usb_driver_release_interface [2].14:dpm -1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/atm/speedtch.c speedtch_release_interfaces [0/1]
+** TODO f14d9338f068b9333f5cf1618df218b23975baf1
+   -- Case 1 (existing summary):
+   --     %entry %for.cond %for.body %for.inc %for.cond %for.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %for.cond %for.body %if.then %for.inc %for.cond %for.end
+   --         {%call}.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1

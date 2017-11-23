@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/InterfaceIdleMode.c InterfaceAbortIdlemode [0/1]
+** TODO 72c77f5784d0f3f561133796df5a2864a3f4e703
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then11 %if.then14 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %land.lhs.true %if.then %if.end %if.then11 %if.then14 %return
+   --         [1].73.1.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns [0]

@@ -1,0 +1,23 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-is.c fimc_is_probe [1/1]
+** BUG 3ffa435890cd90f70a62751deecb156882314905
+   -- Case 1 (existing summary):
+   --     %entry %if.end %do.body %do.end %do.body5 %do.body7 %do.end10 %do.end11 %do.body12 %do.end13 %if.then15 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %do.body %do.end %do.body5 %do.body7 %do.end10 %do.end11 %do.body12 %do.end13 %if.end16 %if.end23 %if.end28 %if.end33 %if.end41 %if.end45 %if.end52 %if.end59 %if.then62 %err_pm %if.end97 %err_irq %err_clk %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-isp.c fimc_isp_subdev_s_power [1/1]
+** BUG a88ae300944b72ce8d8d5e5e474fdbe71f5279d9
+   -- Case 1 (existing summary):
+   --     %entry %do.body %if.end %do.end %if.then4 %if.then6 %return
+   --         [1].11.-isp.pdev.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %do.body %if.end %do.end %if.then4 %if.end7 %if.then10 %return
+   --         returns [0]
+   @

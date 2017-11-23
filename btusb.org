@@ -1,0 +1,18 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/bluetooth/btusb.c btusb_work [0/2]
+** TODO 5eaf0ba94ebd62b0890adce91736a5da60da3b64
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %cond.true %if.then7 %cond.true9 %cond.end %if.then14 %if.end64
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %cond.true %if.then7 %cond.true9 %cond.end %if.end %if.end17 %if.then19 %if.end22 %if.then25 %if.then31 %if.end64
+   --         [1].-6.3.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+** TODO e077b1ca8366f37dcecc8012e52e6c2ca2d46459
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %cond.true %if.then7 %cond.true9 %cond.end %if.then14 %if.end64
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %cond.true %if.then7 %cond.false11 %cond.end %if.end %if.end17 %if.then19 %if.end22 %if.then25 %if.then31 %if.end64
+   --         [1].-6.2.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1

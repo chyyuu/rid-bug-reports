@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/uvc/uvc_driver.c uvc_release [0/1]
+** TODO 6689a5022800e41ec7cc05de430f2497592cad09
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.end
+   --         [1].2.9.1.16.5.14:dpm -1
+   --         `-- uvc_delete [1].16.5.14:dpm -1
+   --             `-- usb_driver_release_interface [2].14:dpm -1

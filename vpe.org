@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/ti-vpe/vpe.c vpe_fw_cb [0/1]
+** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
+   -- Case 1 (existing summary):
+   --     %entry %if.then %return
+   --         [1].dev:dpm -1
+   --         `-- vpe_runtime_put [1].dev:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %if.end %return
+   --         -

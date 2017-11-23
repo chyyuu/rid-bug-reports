@@ -1,0 +1,15 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/ahci_platform.c ahci_probe [0/0]
+** c0998ccb03be879d1f701474892571342db4cf76
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then10 %disable_resources %return
+   --         -12.16.0:dpm -1
+   --         `-- ahci_platform_disable_resources [1].16.0:dpm -1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then10 %disable_resources %return
+   --         -12.16.0:dpm -2
+   --         +-- ahci_platform_disable_resources [1].16.0:dpm -1
+   --         `-- ahci_platform_enable_resources [1].16.0:dpm -1
+   --         returns [0]
+   imprecise summary tracking (leave for future)

@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/vga/vga_switcheroo.c vga_switcheroo_runtime_resume_hdmi_audio [1/1]
+** BUG dbf30a75e68f14efc16ee91c8c1936d2c24d784d
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.body %land.lhs.true %if.then %if.then16 %if.then18 %return
+   --         [vgasr_priv].6.0.-7.0.43:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %for.body %land.lhs.true %if.then %if.end19 %for.end %if.then26 %if.end32 %return
+   --         returns [0]
+   @

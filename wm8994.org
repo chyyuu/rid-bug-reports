@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/wm8994.c _wm8994_set_fll [1/1]
+** BUG 6e5b86bae79a6a403d6a865c86d056088f4719d5
+   -- Case 1 (existing summary):
+   --     %entry %2 %sw.epilog %if.end %sw.epilog12 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %sw.epilog %sw.epilog12 %if.then32 %if.end43 %if.end55 %sw.bb139 %if.then150 %if.end154 %if.end161 %cond.true %cond.end %return
+   --         [1].0:dpm +1
+   --         `-- vmid_reference [1].0:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0

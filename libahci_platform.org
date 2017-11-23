@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_put_resources [0/1]
+** TODO 63859e0dfb45a1ec0b4d776f947f9e4ef0bbb895
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %for.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.end %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %for.end
+   --         [1]:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1

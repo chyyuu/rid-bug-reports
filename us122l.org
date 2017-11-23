@@ -1,0 +1,38 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/usx2y/us122l.c usb_stream_hwdep_open [0/4]
+** TODO d0483a047dce83e4b165cde77fb95441bb0cf705
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         0.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0
+** TODO d0483a047dce83e4b165cde77fb95441bb0cf705
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         [1].10.0.15.3.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0
+** TODO d0483a047dce83e4b165cde77fb95441bb0cf705
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         {%call17}.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0
+** TODO 7212a7f763f91828ec52396f94b04f86ac29b349
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end3 %if.then12 %if.end15 %return
+   --         {%call}.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0

@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/usb/musb/musb_dsps.c dsps_probe [1/1]
+** BUG 238f34ab98ec0e6ddb4b8e1639e3a100c4679dbf
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end6 %if.end13 %if.then20 %err2 %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end6 %if.end13 %if.end23 %if.then26 %err3 %err2 %return
+   --         returns [0]
+   @

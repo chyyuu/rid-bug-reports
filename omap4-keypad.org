@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/input/keyboard/omap4-keypad.c omap4_keypad_probe [1/1]
+** BUG a605b35229e67f3fcc233c9959553d1db102475f
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end7 %if.end13 %if.then18 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end7 %if.end13 %if.end19 %if.end26 %if.end35 %if.then40 %err_unmap %err_release_mem %err_free_keypad %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

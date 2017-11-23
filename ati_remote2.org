@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/misc/ati_remote2.c ati_remote2_probe [0/1]
+** TODO 5ac4f514cdd0aef70836e1d59a2f538a3ad6122a
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end4 %if.end17 %fail2 %fail1 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end4 %if.end17 %fail2 %fail1 %return
+   --         {%call1}.2.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1
+   --         returns [0]

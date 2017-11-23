@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../sound/soc/tegra/tegra30_i2s.c tegra30_i2s_resume [1/1]
+** BUG 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
+   -- Case 1 (existing summary):
+   --     %entry %if.then %return
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %return
+   --         returns [0]
+   @

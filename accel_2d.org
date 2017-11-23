@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/accel_2d.c psbfb_copyarea_accel [0/0]
+** 81d2b3581099172728f062a338bf8d305432daea
+   -- Case 1 (existing summary):
+   --     %entry %2 %sw.epilog %if.end8 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %sw.epilog %return
+   --         [1].29.1.0.0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   (should not report)

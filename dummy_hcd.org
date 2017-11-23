@@ -1,0 +1,20 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/gadget/udc/dummy_hcd.c dummy_hcd_probe [0/2]
+** TODO 7fa095c50552bf223ad9db2389fe8681db297882
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then9 %return
+   --         returns -12
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end10 %if.end14 %if.then16 %if.then22 %dealloc_usb2_hcd %put_usb2_hcd %return
+   --         0.30.1:dpm +1
+   --         `-- usb_remove_hcd 0.30.1:dpm +1
+   --         returns -12
+** TODO 7fa095c50552bf223ad9db2389fe8681db297882
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then9 %return
+   --         returns -12
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end10 %if.end14 %if.then16 %if.then22 %dealloc_usb2_hcd %put_usb2_hcd %return
+   --         {%rhdev}.8.15.3.14.9.30.1:dpm +1
+   --         `-- usb_remove_hcd {%rhdev}.8.15.3.14.9.30.1:dpm +1
+   --         returns -12

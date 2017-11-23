@@ -1,0 +1,46 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/i915/intel_pm.c intel_fini_runtime_pm [0/1]
+** TODO a686aea239b56dc46a778c9e3403a00936df0d3f
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %lor.lhs.false21 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end34 %return
+   --         [1].0.38.43:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/i915/intel_pm.c intel_init_runtime_pm [0/1]
+** TODO c4b1fc9c3626460d512db5beefe653ae5c4b2923
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %lor.lhs.false21 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end36 %return
+   --         [1].0.38.43:dpm -1
+   --         `-- pm_runtime_put_autosuspend [1]:dpm -1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/i915/intel_pm.c intel_runtime_pm_get [0/1]
+** TODO c4b1fc9c3626460d512db5beefe653ae5c4b2923
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %lor.lhs.false21 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end36 %return
+   --         [1].0.38.43:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/i915/intel_pm.c intel_runtime_pm_get_noresume [0/1]
+** TODO 91fc56b696459be3586608233745036a4090d222
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %lor.lhs.false21 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end35 %return
+   --         [1].0.38.43:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/i915/intel_pm.c intel_runtime_pm_put [0/1]
+** TODO 0f5ee634da3b1663b1bb6d1fb22446606c6ce492
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %lor.lhs.false21 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %return
+   --         [1].0.38.43:dpm -1
+   --         `-- pm_runtime_put_autosuspend [1]:dpm -1

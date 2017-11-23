@@ -1,0 +1,21 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_display.c psb_intel_crtc_clock_get [0/1]
+** TODO 1643e9c4200e181f922910b423e0cc4adeaa8fcc
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.then8 %if.end %land.end %if.end30 %if.then37 %if.then43 %if.end45 %if.end63
+   --         returns {%clock}.5
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else14 %if.then18 %if.end22 %land.end28 %if.end30 %if.then37 %if.then43 %if.end45 %if.end63
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns {%clock}.5
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_display.c psb_intel_crtc_mode_get [0/1]
+** TODO 866602791c3feaef23a548034a8505fd8a901294
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end %if.then17 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end %if.then17 %return
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns 0

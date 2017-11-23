@@ -1,0 +1,14 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/pci/host/pci-dra7xx.c dra7xx_pcie_remove [0/1]
+** TODO 46237757890aa8c98f386fd490dd1140b388e024
+   -- Case 1 (existing summary):
+   --     %entry %if.end %while.cond %while.body %while.cond %while.end
+   --         [1].dev.9.phy.0:dpm -1
+   --         `-- phy_exit [1].0:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.end %while.cond %while.body %while.cond %while.end
+   --         [1].dev.9.phy.0:dpm -2
+   --         +-- phy_exit [1].0:dpm -1
+   --         `-- phy_power_off [1].0:dpm -1
+   --         returns 0

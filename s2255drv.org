@@ -1,0 +1,31 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/s2255/s2255drv.c s2255_probe [0/0]
+** f8bc80265d005f02f46698d416e8c52debb791d7
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond71 %for.inc91 %for.cond71 %if.end158 %errorBOARDINIT %errorFWMARKER %errorREQFW %errorFWDATA2 %errorFWURB %errorEP %errorUDEV %errorFWDATA1 %return
+   --         {%call}.6.8.15.3.14.9.0:dpm +1
+   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond71 %for.inc91 %for.cond71 %if.end158 %errorBOARDINIT %errorFWMARKER %errorREQFW %errorFWDATA2 %errorFWURB %errorEP %errorUDEV %errorFWDATA1 %return
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns [0]
+** f8bc80265d005f02f46698d416e8c52debb791d7
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond71 %for.inc91 %for.cond71 %if.end158 %errorBOARDINIT %errorFWMARKER %errorREQFW %errorFWDATA2 %errorFWURB %errorEP %errorUDEV %errorFWDATA1 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond71 %for.inc91 %for.cond71 %if.end158 %errorBOARDINIT %errorFWMARKER %errorREQFW %errorFWDATA2 %errorFWURB %errorEP %errorUDEV %errorFWDATA1 %return
+   --         {%call}.6.15.3.14:dpm -1
+   --         `-- usb_reset_device [1].15.3.14:dpm -1
+   --         returns [0]
+** f8bc80265d005f02f46698d416e8c52debb791d7
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond71 %for.inc91 %for.cond71 %if.end158 %errorBOARDINIT %errorFWMARKER %errorREQFW %errorFWDATA2 %errorFWURB %errorEP %errorUDEV %errorFWDATA1 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond71 %for.inc91 %for.cond71 %if.end158 %errorBOARDINIT %errorFWMARKER %errorREQFW %errorFWDATA2 %errorFWURB %errorEP %errorUDEV %errorFWDATA1 %return
+   --         {%call}.6.15.3.14:dpm -2
+   --         `-- usb_reset_device [1].15.3.14:dpm -2
+   --         returns [0]

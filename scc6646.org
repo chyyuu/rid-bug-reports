@@ -1,0 +1,62 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/tlg2300/pd-alsa.c snd_pd_capture_open [1/1]
+** BUG c45c36e7c97796740229b102a3ac6bf8f61f4ee4
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %return
+   --         [1].2.5.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0
+   neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/tlg2300/pd-dvb.c poseidon_ts_bus_ctrl [0/1]
+** TODO afb1f4815bd595d71bd2dcf77fff0e4cb20e5d62
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then2 %if.end5 %if.end12 %if.then15 %if.then18 %open_out %if.end36 %return
+   --         [1].2.5.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then2 %if.end5 %if.end12 %if.then15 %if.then18 %open_out %if.end36 %return
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/tlg2300/pd-main.c fixup [0/0]
+** 4c7f872f62b98139f3dec786a2efc5990ef6d6a5
+   -- Case 1 (existing summary):
+   --     %entry %2 %while.cond %while.end
+   --         returns [1]
+   -- Case 2 (new summary):
+   --     %entry %2 %while.cond %while.body %while.cond %while.end
+   --         [1].5.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns [1]
+   loop
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/tlg2300/pd-main.c hibernation_resume [0/1]
+** TODO 464bb1a62fc279a9f24447aa2b94af7a11085f65
+   -- Case 1 (existing summary):
+   --     %entry %2 %while.cond %while.end %do.body %if.end %do.end %if.end10
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %while.cond %while.body %while.cond %while.end %do.body %if.end %do.end %if.end10
+   --         [1].-17.5.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/tlg2300/pd-radio.c poseidon_fm_open [0/1]
+** TODO 8444d9099109d2f55144ff20645b808750db55bf
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end7 %if.end11 %if.then14 %if.end20 %if.then23 %out
+   --         [video_device].2.9.5.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end7 %if.end11 %if.then14 %if.end20 %if.then23 %out
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/usb/tlg2300/pd-video.c pd_video_open [0/1]
+** TODO fd00d9868e9ae9825807fd070ddb7cc4c1d0b89f
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end8 %if.then9 %if.end13 %if.end22 %do.body %do.body27 %do.end %do.end29 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end8 %if.then9 %if.end13 %if.end22 %do.body %do.body27 %do.end %do.end29 %return
+   --         [video_device].2.9.5.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns 0

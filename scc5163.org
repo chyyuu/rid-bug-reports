@@ -1,0 +1,50 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/cdv_intel_display.c cdv_intel_crtc_clock_get [0/1]
+** TODO 955995ea467a6d0ba50b84231714a14072ec663a
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.then8 %if.end %land.end %if.end30 %if.then37 %if.end47 %if.then50 %if.end52 %if.end70
+   --         returns {%clock}.5
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else14 %if.then18 %if.end22 %land.end28 %if.end30 %if.then37 %if.end47 %if.then50 %if.end52 %if.end70
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns {%clock}.5
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/cdv_intel_display.c cdv_intel_crtc_mode_get [0/1]
+** TODO 866602791c3feaef23a548034a8505fd8a901294
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end %if.then17 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end %if.then17 %return
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/cdv_intel_lvds.c cdv_intel_lvds_get_max_backlight [0/0]
+** a57d5c150eeff47cba1c3bfe4a6bdb0bc4bb2ede
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns [0]
+   imprecise summary tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/cdv_intel_lvds.c cdv_intel_lvds_set_backlight [0/1]
+** TODO a57d5c150eeff47cba1c3bfe4a6bdb0bc4bb2ede
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/cdv_intel_lvds.c cdv_intel_lvds_set_power [0/1]
+** TODO 03e52cdae5263f02010e0af94dfc6d30cf422e45
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then1 %do.body %do.cond %do.end %if.end12 %return
+   --         -

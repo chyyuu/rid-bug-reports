@@ -1,0 +1,68 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/radeon/radeon_connectors.c radeon_dp_detect [1/1]
+** BUG dad4d9f523ef344dc3917fa631df498162f8e4d0
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 2
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end8 %if.then12 %if.end23 %if.end27 %if.end30 %if.end35 %if.end83 %out %return
+   --         returns 2
+   @
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/radeon/radeon_connectors.c radeon_lvds_detect [1/1]
+** BUG f082036f9a837203475319cefe253f1ad549a24e
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 2
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end12 %if.end15 %return
+   --         returns 2
+   @
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/radeon/radeon_connectors.c radeon_tv_detect [1/1]
+** BUG f570f48beb08765859331dd98d74d8fe12e85c9c
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         returns 2
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then3 %return
+   --         [1].0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 2
+   @
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/radeon/radeon_connectors.c radeon_vga_detect [1/1]
+** BUG 2d5636af1534af3472b15dd81082ec8ad52571ab
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 2
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end7 %if.end12 %if.else31 %if.then33 %if.end37 %out %return
+   --         returns 2
+   @
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/radeon/radeon_display.c radeon_crtc_set_config [2/2]
+** BUG ea09d2f62a24912a6e736c7ac55f54117994350f
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.then6 %return
+   --         [1].1.0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.end7 %for.cond %for.end %if.end26 %if.end35 %return
+   --         returns [0]
+   @
+** DUP aa6588d017dbc756e97b7c7e124b96554d70dbbf
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.then6 %return
+   --         [1].1.0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.end7 %for.cond %for.end %if.end26 %land.lhs.true28 %if.then31 %if.end35 %return
+   --         [1].1.0.3:dpm -1
+   --         +-- pm_runtime_get_sync [1]:dpm +1
+   --         `-- pm_runtime_put_autosuspend [1]:dpm -1
+   --         returns [0]

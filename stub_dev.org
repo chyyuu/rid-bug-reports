@@ -1,0 +1,38 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/usbip/stub_dev.c stub_device_reset [0/0]
+** df4a83ae92c8dde93f90ce52e75ff7560de2d802
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %return
+   --         [1].-2.1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+** df4a83ae92c8dde93f90ce52e75ff7560de2d802
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %return
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+** df4a83ae92c8dde93f90ce52e75ff7560de2d802
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %return
+   --         [1].-2.1.15.3.14:dpm -1
+   --         `-- usb_reset_device [1].15.3.14:dpm -1
+   --         [1].-2.1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+** df4a83ae92c8dde93f90ce52e75ff7560de2d802
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %return
+   --         [1].-2.1.15.3.14:dpm -2
+   --         `-- usb_reset_device [1].15.3.14:dpm -2
+   --         [1].-2.1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1

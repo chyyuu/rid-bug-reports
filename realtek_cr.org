@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/storage/realtek_cr.c rts51x_invoke_transport [0/1]
+** TODO 8d280b195984979876bb7d799b7fdf08e7e624c3
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.else %if.then18 %land.lhs.true %if.then24 %if.then27 %if.end37 %out %if.end120
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.then8 %if.end %if.then13 %if.end15 %if.end113 %out %if.end120
+   --         [2].2.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1

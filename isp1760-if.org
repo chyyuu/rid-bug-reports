@@ -1,0 +1,18 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/isp1760-if.c isp1761_pci_remove [0/2]
+** TODO be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         0.30.1:dpm +1
+   --         `-- usb_remove_hcd 0.30.1:dpm +1
+** TODO be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         {%rhdev}.8.15.3.14.9.30.1:dpm +1
+   --         `-- usb_remove_hcd {%rhdev}.8.15.3.14.9.30.1:dpm +1

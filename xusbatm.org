@@ -1,0 +1,21 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/atm/xusbatm.c xusbatm_bind [0/1]
+** TODO 4726df8c2ab516423678e4e4ed37e4904e738078
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end104 %land.lhs.true113 %if.then118 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end104 %land.lhs.true113 %if.then118 %return
+   --         {%call7}.14:dpm -1
+   --         `-- xusbatm_release_intf [2].14:dpm -1
+   --             `-- usb_driver_release_interface [2].14:dpm -1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/atm/xusbatm.c xusbatm_unbind [0/1]
+** TODO 42237ceabc17ac0e39d3fd86a960dfe6187b3918
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.body %for.inc %for.cond %for.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %for.body %if.then10 %for.inc %for.cond %for.end
+   --         [2].14.0.-11.15.3.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1

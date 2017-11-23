@@ -1,0 +1,19 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_runtime_pm_bus_off [0/1]
+** TODO 38828e817af2602c90c851f9456de98ae58977b6
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %return
+   --         [1].6.0:dpm -1
+   --         `-- pm_runtime_put_noidle [1]:dpm -1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_runtime_pm_bus_on [0/1]
+** TODO 38828e817af2602c90c851f9456de98ae58977b6
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %return
+   --         [1].6.0:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1

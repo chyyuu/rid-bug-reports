@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../arch/arm/common/edma.c      edma_probe [1/1]
+** BUG 7c5e6d0228241d9df7af14f3f092b5bcb0dcac17
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.end %if.then9 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.then %if.end %if.end13 %if.end14 %if.end17 %if.then19 %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

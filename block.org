@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/card/block.c mmc_blk_issue_rq [0/0]
+** 5ae23dbf69a8378e6032d61f282962e9ea571a08
+   -- Case 1 (existing summary):
+   --     %entry %2 %cond.true %cond.end %if.then26 %if.end29 %if.end59 %out %if.then68 %if.end69
+   --         [1].5.2.0.1:dpm -1
+   --         `-- mmc_put_card [1].1:dpm -1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %cond.true %cond.end %if.then %if.then26 %if.end29 %if.end59 %out %if.then68 %if.end69
+   --         returns [0]
+   imprecise tracking of branch conditions (bitmap)

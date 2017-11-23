@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/rtl8188eu/os_dep/usb_intf.c rtw_usb_if1_init [0/0]
+** c0033975809b00e2ae4dac1009838c9921a06002
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end %if.end5 %if.end41 %if.else %if.end66 %free_hal_data %free_adapter %if.end111 %exit
+   --         returns {%call2}.0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end %if.end5 %if.end41 %if.else %if.end66 %free_hal_data %free_adapter %if.end111 %exit
+   --         [2].14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns {%call2}.0
+   improper error handling

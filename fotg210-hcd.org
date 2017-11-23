@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/fotg210-hcd.c fotg210_irq [0/1]
+** TODO 9934710dd487681ed4c37cc124bb08e62f99ddc1
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end42 %if.end135 %if.end183 %return
+   --         returns 1
+   -- Case 2 (new summary):
+   --     %entry %2 %dead %if.end183 %return
+   --         [1].0.13.15.3.14.9.0:dpm +1
+   --         `-- usb_hc_died [1].0.13.15.3.14.9.0:dpm +1
+   --         returns 1

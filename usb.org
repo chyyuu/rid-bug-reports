@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/storage/usb.c quiesce_and_remove_host [0/1]
+** TODO 88e3c8a3718a353e7c0fd600a0db3c4023e213fe
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %cond.true %if.end8
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %cond.true %if.then7 %if.end8
+   --         [1].2.14:dpm -1
+   --         `-- usb_autopm_put_interface_no_suspend [1].14:dpm -1

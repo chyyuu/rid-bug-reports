@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/smsc95xx.c smsc95xx_manage_power [0/1]
+** TODO 117a9da2fe025be37ec0bb941af0767fd5974c4f
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then2 %if.end5 %return
+   --         [1].1.14:dpm +1
+   --         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --         returns 0

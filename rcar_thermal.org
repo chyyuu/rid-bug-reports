@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/thermal/rcar_thermal.c rcar_thermal_probe [0/1]
+** TODO de19532842f71834988173d00027b8bcfeaa66a8
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         returns -12
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %do.body %do.body3 %do.end %do.end5 %if.then10 %if.then15 %return
+   --         [1].3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns -12

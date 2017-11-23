@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/i2c/s5k6a3.c __s5k6a3_power_on [1/1]
+** BUG 35a901e1481199d78d80b191b663143ca5383623
+   -- Case 1 (existing summary):
+   --     %entry %if.then %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.then3 %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get [1]:dpm +1
+   --         returns [0]
+   @

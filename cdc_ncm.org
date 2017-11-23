@@ -1,0 +1,28 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/cdc_ncm.c cdc_ncm_bind_common [0/1]
+** TODO dd7a0227c3fe6ddaa630cf541157b1c698453936
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end6 %while.cond %land.end %return
+   --         returns -19
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end6 %while.cond %land.end %if.then279 %return
+   --         [1].21.8.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1
+   --         returns -19
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/cdc_ncm.c cdc_ncm_unbind [0/2]
+** TODO f4e0256819d6f284558674385ecf9eb405344963
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then15 %return
+   --         [1].21.8.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1
+** TODO 0f620be40f395b726592b3f06081233793c44289
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then24 %return
+   --         [1].21.7.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1

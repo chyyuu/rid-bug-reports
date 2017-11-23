@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/video/fbdev/auo_k190x.c auok190xfb_dpy_deferred_io [0/1]
+** TODO 9b827babc6eed3e2da202b7bf4085fa5d770ebfb
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end %if.then10 %out
+   --         [1].20:dpm -1
+   --         `-- pm_runtime_put_autosuspend [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end %if.then10 %out
+   --         -

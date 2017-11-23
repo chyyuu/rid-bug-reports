@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/cdc_ether.c usbnet_cdc_unbind [0/1]
+** TODO bed50b2230a071c832b37b7caa2ad80d64716fb8
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then5 %if.end19
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then14 %if.end19
+   --         [1].21.3.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1

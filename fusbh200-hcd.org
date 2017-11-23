@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/fusbh200-hcd.c fusbh200_irq [0/1]
+** TODO 6d337101af92dd22878865a0a1372b61b3fb2c0c
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end32 %if.end127 %if.end173 %return
+   --         returns 1
+   -- Case 2 (new summary):
+   --     %entry %2 %dead %if.end173 %return
+   --         [1].0.13.15.3.14.9.0:dpm +1
+   --         `-- usb_hc_died [1].0.13.15.3.14.9.0:dpm +1
+   --         returns 1

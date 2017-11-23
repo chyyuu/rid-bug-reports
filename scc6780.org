@@ -1,0 +1,13 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/nouveau/nouveau_connector.c nouveau_connector_detect_lvds [1/1]
+** BUG d3117a59e840652e81b4d7e2844e17ccb76d7ff2
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then8 %return
+   --         returns 2
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end9 %if.then11 %if.end15 %if.end16 %if.end24 %if.end33 %if.end49 %out %if.end57 %return
+   --         [1].0.3:dpm +1
+   --         `-- nouveau_connector_detect [1].0.3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 2
+   @

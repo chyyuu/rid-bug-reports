@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/usb/dwc3/dwc3-omap.c dwc3_omap_probe [1/1]
+** BUG 210e4bf85edd9041764d6fd8c0b0808f2b56c96d
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end7 %if.end11 %if.then15 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end7 %if.end11 %if.end17 %if.end26 %if.then33 %err0 %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

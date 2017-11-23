@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/realtek/r8169.c rtl_remove_one [0/1]
+** TODO 858aaecb08521224736ecfc0db4ecf92edbc4feb
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %if.end %if.end15
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %lor.lhs.false7 %if.end %if.then13 %if.end15
+   --         [1].43:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1

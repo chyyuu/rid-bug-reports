@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/touchscreen/usbtouchscreen.c usbtouch_open [0/1]
+** TODO 3bee9a28aa2deb93f23947fae37979c93d8f2ea2
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %out
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %out
+   --         [1].39.9.6.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns [0]

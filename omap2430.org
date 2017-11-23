@@ -1,0 +1,25 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/usb/musb/omap2430.c omap2430_musb_exit [1/1]
+** BUG 361048f5e4b6ffc1574c538608a8e2effc893245
+   -- Case 1 (existing summary):
+   --     %entry
+   --         [1].phy.0:dpm -1
+   --         `-- phy_exit [1].0:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry
+   --         [1].phy.0:dpm -2
+   --         +-- phy_exit [1].0:dpm -1
+   --         `-- phy_power_off [1].0:dpm -1
+   --         returns 0
+   neglect possible error
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/usb/musb/omap2430.c omap_musb_set_mailbox [0/0]
+** 476bcb3277640d47458fc04673188e11fe7ce203
+   -- Case 1 (existing summary):
+   --     %entry %if.then10 %sw.epilog
+   --         [1].musb.3.9.controller:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %sw.epilog
+   --         -
+   imprecise summary tracking

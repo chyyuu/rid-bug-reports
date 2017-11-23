@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/misc/ims-pcu.c ims_pcu_probe [0/1]
+** TODO 048450e8c17b55268c79f56f81b5f8fbe07d03fa
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end %if.end7 %if.end13 %if.end18 %err_free_buffers %err_unclaim_intf %err_free_mem %return
+   --         returns -5
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end %if.end7 %if.end13 %if.end18 %err_free_buffers %err_unclaim_intf %err_free_mem %return
+   --         {%call1}.19.14:dpm -1
+   --         `-- usb_driver_release_interface [2].14:dpm -1
+   --         returns -5

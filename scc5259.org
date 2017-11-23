@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/s3c-camif/camif-capture.c s3c_camif_open [1/1]
+** BUG c88e9ae0240eae7fb90166c6c27a87486788e2d7
+   -- Case 1 (existing summary):
+   --     %entry %do.body %if.end %do.end %if.end8 %if.end12 %if.end17 %if.then20 %unlock %return
+   --         [video_device].2.9.camif.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %do.body %if.end %do.end %if.end8 %if.end12 %if.end17 %if.end21 %err_pm %unlock %return
+   --         returns [0]
+   @

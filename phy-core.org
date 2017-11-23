@@ -1,0 +1,13 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/phy/phy-core.c phy_power_on [0/0]
+** 913ca71da18bf2fcf49773860768bab698809695
+   -- Case 1 (existing summary):
+   --     %entry %if.then2 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.then2 %if.end7 %if.then16 %out %return
+   --         [1].0:dpm -1
+   --         `-- phy_pm_runtime_put_sync [1].0:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns [0]
+   imprecise summary tracking

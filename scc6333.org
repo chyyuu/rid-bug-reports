@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/dwc3/core.c dwc3_probe [0/1]
+** TODO ea9c3bc0bbeae95816aa127f9342f75301a2d7c8
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         returns -12
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end10 %if.end25 %if.end51 %if.then56 %if.end71 %if.end76 %if.end80 %do.body %do.body82 %do.end %do.end84 %if.then93 %err0 %return
+   --         [1].3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns -12

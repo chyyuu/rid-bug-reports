@@ -1,0 +1,21 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/platform/sh_vou.c sh_vou_open [0/1]
+** TODO f563192330c98dfe505a924ade53f7823266bc6c
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %do.body %do.body2 %if.end6 %do.end %do.end7 %if.end11 %if.end27 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %do.body %do.body2 %if.end6 %do.end %do.end7 %if.end11 %if.then13 %if.end26 %if.end27 %return
+   --         [video_device].2.9.0.0:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/media/platform/sh_vou.c sh_vou_release [0/1]
+** TODO 488ea6e33703193959141263f7823969c964d179
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end3 %if.end11
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end3 %if.then6 %if.end11
+   --         [video_device].2.9.0.0:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns 0

@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/misc/idmouse.c idmouse_open [0/1]
+** TODO 852c76e47ff61abee23b2adbc1ca5609eb3250a6
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end5 %if.else %if.then10 %error %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end5 %if.else %if.end11 %if.then14 %error %return
+   --         {%call}:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns [0]

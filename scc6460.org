@@ -1,0 +1,55 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/storage/scsiglue.c bus_reset [0/1]
+** TODO be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         [1].0.0.66.1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_stor_port_reset [1].1.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/storage/transport.c usb_stor_invoke_transport [0/0]
+** e74c7edc6e5dabe9fa7b71a9e979f57865b9424d
+   -- Case 1 (existing summary):
+   --     %entry %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %Handle_Errors %return
+   --         [2].1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_stor_port_reset [1].1.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+** e74c7edc6e5dabe9fa7b71a9e979f57865b9424d
+   -- Case 1 (existing summary):
+   --     %entry %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %Handle_Errors %return
+   --         {%call15}.0:dpm +1
+   --         `-- usb_stor_port_reset {%call15}.0:dpm +1
+   --             `-- usb_reset_device {%call15}.0:dpm +1
+** e74c7edc6e5dabe9fa7b71a9e979f57865b9424d
+   -- Case 1 (existing summary):
+   --     %entry %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %Handle_Errors %return
+   --         [2].1.15.3.14:dpm -1
+   --         `-- usb_stor_port_reset [1].1.15.3.14:dpm -1
+   --             `-- usb_reset_device [1].15.3.14:dpm -1
+   --         [2].1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_stor_port_reset [1].1.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+** e74c7edc6e5dabe9fa7b71a9e979f57865b9424d
+   -- Case 1 (existing summary):
+   --     %entry %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %Handle_Errors %return
+   --         [2].1.15.3.14:dpm -2
+   --         `-- usb_stor_port_reset [1].1.15.3.14:dpm -2
+   --             `-- usb_reset_device [1].15.3.14:dpm -2
+   --         [2].1.8.15.3.14.9.0:dpm +1
+   --         `-- usb_stor_port_reset [1].1.8.15.3.14.9.0:dpm +1
+   --             `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1

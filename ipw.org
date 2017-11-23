@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/serial/ipw.c  ipw_open [0/1]
+** TODO bbcca9a5a3d3eebce9fe11ea94d35c9b94b22ff0
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %do.body %do.body3 %if.end7 %do.end %do.end8 %if.then11 %if.end13 %do.body22 %do.body23 %if.end28 %do.end29 %do.end30 %do.body32 %do.body33 %if.end38 %do.end39 %do.end40 %if.then46 %if.end48 %do.body49 %do.body50 %if.end55 %do.end56 %do.end57 %if.then63 %if.end65 %return
+   --         [2].0.2.14:dpm -1
+   --         `-- usb_wwan_open [2].0.2.14:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %do.body %do.body3 %if.end7 %do.end %do.end8 %if.then11 %if.end13 %do.body22 %do.body23 %if.end28 %do.end29 %do.end30 %do.body32 %do.body33 %if.end38 %do.end39 %do.end40 %if.then46 %if.end48 %do.body49 %do.body50 %if.end55 %do.end56 %do.end57 %if.then63 %if.end65 %return
+   --         returns 0

@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/misc/mei/pci-me.c mei_me_remove [0/1]
+** TODO 1b9c12cce062781267c571898d85009fcda26c2e
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then2 %if.end4 %do.body %do.body6 %if.end11 %do.end %do.end12 %if.end15 %if.end19 %return
+   --         [1].43:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1

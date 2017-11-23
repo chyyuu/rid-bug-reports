@@ -1,0 +1,48 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/hsi/controllers/omap_ssi.c ssi_gdd_tasklet [0/1]
+** TODO a1e33608b795418379f8f51739032fc99dbfb911
+   -- Case 1 (existing summary):
+   --     %entry %for.cond %for.body %if.end %for.inc %for.cond %for.end %if.then18 %if.end19
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %for.cond %for.body %if.then %if.end %for.inc %for.cond %for.end %if.then18 %if.end19
+   --         [1].device.parent:dpm -1
+   --         +-- pm_runtime_get_sync [1]:dpm +1
+   --         +-- pm_runtime_put_sync [1]:dpm -1
+   --         `-- ssi_gdd_complete [1].device.parent:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/hsi/controllers/omap_ssi.c ssi_probe [0/2]
+** TODO aa57623852e563f6731d1a5ef6e119553e5b293e
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end8 %if.then10 %out1 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end8 %if.end11 %if.then16 %out2 %out1 %return
+   --         {%call3}.device.parent:dpm +1
+   --         `-- ssi_hw_init [1].device.parent:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+** TODO aa57623852e563f6731d1a5ef6e119553e5b293e
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end8 %if.then10 %out1 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end8 %if.end11 %if.then16 %out2 %out1 %return
+   --         [1].dev.0:dpm +1
+   --         `-- pm_runtime_irq_safe [1].0:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         {%call3}.device.parent:dpm +1
+   --         `-- ssi_hw_init [1].device.parent:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/hsi/controllers/omap_ssi.c ssi_waketest [0/0]
+** a0bb52650d33e1d5f1b9b433a9a300b695e84378
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.end
+   --         [1].device.parent.parent.parent:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %if.else %if.end
+   --         [1].device.parent.parent.parent:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   imprecise summary tracking

@@ -1,0 +1,22 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_device.c device_backlight_init [0/1]
+** TODO 037f80cd1a721cb3aad3d09ea15ed2f4c348e838
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end11 %return
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then8 %if.end11 %return
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_device.c oaktrail_set_brightness [0/0]
+** 01aedb3db9fe5ae1b96c77390f3ec8a9a8a7c6fe
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end10
+   --         [oaktrail_backlight_device].6.9.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then2 %if.end10
+   --         returns 0
+   imprecise summary tracking

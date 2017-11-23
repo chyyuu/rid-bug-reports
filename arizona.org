@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/arizona.c arizona_disable_fll [0/0]
+** 6689a5022800e41ec7cc05de430f2497592cad09
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.end
+   --         [1].0.1:dpm -1
+   --         `-- pm_runtime_put_autosuspend [1]:dpm -1
+   branch condition on an output argument

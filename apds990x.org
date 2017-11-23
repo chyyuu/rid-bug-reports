@@ -1,0 +1,22 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/misc/apds990x.c apds990x_power_state_store [0/2]
+** TODO 82fb600fad5b39640acfca5c230d751068cda9e5
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then3 %if.end10 %return
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [4]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.else %if.end9 %if.end10 %return
+   --         returns [4]
+** TODO 15d19386a51b119020dbfad2e14fecce43a909b4
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.then3 %if.end10 %return
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [4]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.else %if.then7 %if.end9 %if.end10 %return
+   --         [1]:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns [4]

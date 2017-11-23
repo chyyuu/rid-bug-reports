@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/s5p-tv/mixer_video.c mxr_video_open [1/1]
+** BUG 025c2bdc7ed6a10cf0c61a3812f79daaee0b56bc
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end11 %if.end17 %fail_power %fail_fh_open %unlock %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end11 %fail_fh_open %unlock %return
+   --         [video_device].2.9.mdev.dev:dpm +1
+   --         `-- mxr_power_get [1].dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]

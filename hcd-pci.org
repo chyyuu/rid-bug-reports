@@ -1,0 +1,26 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd-pci.c usb_hcd_pci_remove [0/3]
+** TODO d4b472c30b710b19532453f60d4e449ace177a3d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end4 %do.body %do.body5 %do.end %do.end6 %do.body8 %do.body9 %do.end10 %do.end11 %if.then12 %if.end15 %if.then17 %if.end21 %return
+   --         0.30.1:dpm +1
+   --         `-- usb_remove_hcd 0.30.1:dpm +1
+** TODO d4b472c30b710b19532453f60d4e449ace177a3d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end4 %do.body %do.body5 %do.end %do.end6 %do.body8 %do.body9 %do.end10 %do.end11 %if.then12 %if.end15 %if.then17 %if.end21 %return
+   --         {%rhdev}.8.15.3.14.9.30.1:dpm +1
+   --         `-- usb_remove_hcd {%rhdev}.8.15.3.14.9.30.1:dpm +1
+** TODO f3415df765f7bd74f06ddc5c28137678f2ffa265
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then2 %if.end4 %do.body %do.body5 %do.end %do.end6 %do.body8 %do.body9 %do.end10 %do.end11 %if.then12 %if.end15 %if.then17 %if.end21 %return
+   --         [1].43:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1

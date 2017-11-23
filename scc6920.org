@@ -1,0 +1,24 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/nouveau/dispnv04/crtc.c nouveau_crtc_set_config [2/2]
+** BUG 8fdd2c34fe7abc7332ebe360aeed024fc25dbd40
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %if.end %land.lhs.true %if.then7 %return
+   --         [1].1.0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.end8 %for.cond %for.end %if.end29 %if.end38 %return
+   --         returns [0]
+   @
+** DUP 2b6e769b30981bd67684680266b1e12d716c5aaf
+   -- Case 1 (existing summary):
+   --     %entry %2 %lor.lhs.false %if.end %land.lhs.true %if.then7 %return
+   --         [1].1.0.3:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %lor.lhs.false %if.end %if.end8 %for.cond %for.end %if.end29 %land.lhs.true31 %if.then34 %if.end38 %return
+   --         [1].1.0.3:dpm -1
+   --         +-- pm_runtime_get_sync [1]:dpm +1
+   --         `-- pm_runtime_put_autosuspend [1]:dpm -1
+   --         returns [0]

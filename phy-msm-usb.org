@@ -1,0 +1,21 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_irq [0/1]
+** TODO 8140d098d546c91be9f36111ea1eab165abaf297
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [2].0.0:dpm +1
+   --         `-- pm_runtime_get [1]:dpm +1
+   --         returns 1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end6 %if.else26 %if.end51 %if.end52 %return
+   --         returns 1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_sm_work [0/1]
+** TODO b2466a1d271f61e309e6b7a2e6b5d6c70668c4fe
+   -- Case 1 (existing summary):
+   --     %entry %2 %NodeBlock9 %NodeBlock %LeafBlock %sw.bb %do.body %do.body3 %if.end %do.end %do.end6 %sw.bb11 %do.body12 %do.body13 %if.end20 %do.end21 %do.end22 %cond.true %land.lhs.true %if.then29 %if.end72 %if.end79 %sw.epilog147
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %NodeBlock9 %NodeBlock %LeafBlock %sw.bb %do.body %do.body3 %if.end %do.end %do.end6 %sw.bb11 %do.body12 %do.body13 %if.end20 %do.end21 %do.end22 %cond.true %if.else %cond.true37 %if.then45 %NodeBlock16 %LeafBlock12 %sw.bb46 %sw.epilog58 %if.end71 %if.end72 %if.end79 %sw.epilog147
+   --         [1].-9.14.0.0:dpm +1
+   --         `-- msm_chg_detect_work [1].0:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1

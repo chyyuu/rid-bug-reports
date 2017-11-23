@@ -1,0 +1,32 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/ehci-hcd.c ehci_irq [0/1]
+** 98f866d48b651cecbd72c29d7f2e8349d3a15db0
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end4 %if.end43 %if.end152 %if.end200 %return
+   --         returns 1
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end4 %if.end43 %if.then82 %if.then92 %if.end94 %while.cond %do.end146 %while.cond %if.end152 %if.end200 %return
+   --         [1].0.13.11:dpm +1
+   --         `-- usb_hcd_start_port_resume [1].13.11:dpm +1
+   --         returns 1
+   complex branch condition (leave for future)
+** TODO 89708474445eed943a940c02abd654a46d2f10fa
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end4 %if.end43 %if.end152 %if.end200 %return
+   --         returns 1
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end4 %dead %if.end200 %return
+   --         [1].0.13.15.3.14.9.0:dpm +1
+   --         `-- usb_hc_died [1].0.13.15.3.14.9.0:dpm +1
+   --         returns 1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/ehci-hub.c ehci_hub_control [0/0]
+** 82c87006d6a88e749a5e58b57d50951776a7920a
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.body9 %if.end %if.end72 %sw.epilog97 %sw.epilog604 %error_exit
+   --         [1].0.13.11:dpm +1
+   --         `-- usb_hcd_start_port_resume [1].13.11:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.body9 %if.end %sw.epilog97 %sw.epilog604 %error_exit
+   --         returns 0
+   complex branch condition (leave for future)

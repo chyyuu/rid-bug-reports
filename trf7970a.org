@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/nfc/trf7970a.c trf7970a_switch_rf [0/1]
+** TODO 51fa682edd1ba5e6b9a1e9176c8ce7c7ad85df2e
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end4 %if.then6 %NodeBlock %LeafBlock1 %sw.bb8 %sw.epilog %if.end24
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end4 %if.then6 %NodeBlock %LeafBlock1 %NewDefault %sw.default %sw.epilog %if.end24
+   --         [1].6.1:dpm -1
+   --         `-- trf7970a_switch_rf_off [1].1:dpm -1
+   --             `-- pm_runtime_put_autosuspend [1]:dpm -1
+   --         returns 0

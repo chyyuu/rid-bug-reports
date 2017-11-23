@@ -1,0 +1,30 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_lvds.c oaktrail_lvds_get_max_backlight [0/0]
+** a57d5c150eeff47cba1c3bfe4a6bdb0bc4bb2ede
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   --         returns [0]
+   imprecise summary tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_lvds.c oaktrail_lvds_mode_set [0/1]
+** TODO cd27d1315372a6797d9ea9240976b2b1338b84b4
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %lor.lhs.false %if.end10 %for.cond %for.end %if.end29 %if.then33 %if.end63 %return
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/oaktrail_lvds.c oaktrail_lvds_set_power [0/1]
+** TODO f37608a7eda3361e46d26c6e6199b76acdbfb4fa
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %return
+   --         [1].38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then1 %do.body %do.cond %do.end %if.end8 %if.end27 %return
+   --         -
