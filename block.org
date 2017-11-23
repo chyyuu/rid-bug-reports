@@ -10,3 +10,13 @@
    --     %entry %2 %cond.true %cond.end %if.then %if.then26 %if.end29 %if.end59 %out %if.then68 %if.end69
    --         returns [0]
    imprecise tracking of branch conditions (bitmap)
+
+analysis: 
+执行 mmc_put_card的条件是位操作，一个(cmd_flags & MMC_REQ_SPECIAL_MASK)
+
+
+其实函数开始处也有mmc_get_card()，但带条件 if (req && !mq->mqrq_prev->req)
+
+所以，会出现 ret的值与mmc_get/put_card 无关，但相等的两条路径
+
+这个位操作，rid是否没有识别???

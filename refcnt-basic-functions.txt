@@ -1,0 +1,25 @@
+
+dev->power.usage_count
+
+pm_runtime_get pm_runtime_get_sync:
+cons: True changes: [dev].pm: {+1} return: [0]
+-----------------------------------
+pm_runtime_put pm_runtime_put_sync:
+cons: True change: [dev].pm: -1 return: [0]
+
+-----------------------------------
+NOTICE: 
+pm_runtime_get -->__pm_runtime_resume(dev, RPM_GET_PUT | RPM_ASYNC)
+
+pm_runtime_get_sync-->  __pm_runtime_resume(dev, RPM_GET_PUT);
+
+
+int __pm_runtime_resume(struct device *dev, int rpmflags)
+{
+	unsigned long flags;
+	int retval;
+
+	might_sleep_if(!(rpmflags & RPM_ASYNC) && !dev->power.irq_safe);
+        ...
+
+if !(rpmflags & RPM_ASYNC) && !dev->power.irq_safe, then have might_sleep BUG!!!

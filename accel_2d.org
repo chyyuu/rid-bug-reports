@@ -9,3 +9,20 @@
    --         [1].29.1.0.0.38.43:dpm +1
    --         `-- gma_power_begin [1].38.43:dpm +1
    (should not report)
+
+analysis:  this is void function
+fun name:
+static void psbfb_copyarea_accel(struct fb_info *info,
+				 const struct fb_copyarea *a)
+
+path1:		/* software fallback */
+		cfb_copyarea(info, a);
+		return;  
+
+path2:  	if (!gma_power_begin(dev, false)) {
+		cfb_copyarea(info, a);
+		return;
+
+gma_power_begin --> pm_runtime_get(&dev->pdev->dev); IF return 0 , it means no DPM+1
+BUT: if P2 return 1, code will also calls gma_power_end(dev) --> pm_runtime_put(&dev->pdev->dev); it means DPM+1,then -1
+SO: no err

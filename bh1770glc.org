@@ -20,3 +20,17 @@
    --         [1]:dpm -1
    --         `-- pm_runtime_put [1]:dpm -1
    --         returns [4]
+
+analysis: ssize_t function
+
+这个例子比较典型，
+ret 作为返回值，在这个函数中，有调用了不同的函数的返回值,
+导致会出现 某个ret先=0， 但后来又改写了ret <0的情况。
+由于 pm_runtime_suspended的返回情况有所不同，导致会出现
+有pm_runtime_get_sync
+
+ret=count ，所以会出现有相同的 ret和cond,但由于pm_runtime_suspended的返回情况有所不同，导致有dpm+1 和dpm+1,-1等于dpm的两种情况
+
+
+SO, has err
+

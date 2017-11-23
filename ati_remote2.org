@@ -9,3 +9,10 @@
    --         {%call1}.2.14:dpm -1
    --         `-- usb_driver_release_interface [2].14:dpm -1
    --         returns [0]
+
+usb_driver_claim_interface--> 好像没有dpm+1
+
+
+usb_driver_release_interface-->usb_unbind_interface --> pm_runtime_get_noresume(dev); pm_runtime_put_noidle(dev);
+分析错了？
+SO, no err

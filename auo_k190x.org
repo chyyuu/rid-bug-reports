@@ -8,3 +8,20 @@
    -- Case 2 (new summary):
    --     %entry %2 %if.else %if.end %if.then10 %out
    --         -
+
+analysis: void function
+
+auok190xfb_dpy_deferred_io--> pm_runtime_barrier --> pm_runtime_get_noresume+pm_runtime_put_noidle  等于0
+...
+-->pm_runtime_put_autosuspen
+
+
+auok190xfb_dpy_deferred_io-->
+...-->pm_runtime_put_autosuspend(info->device)
+
+auok190xfb_dpy_deferred_io-->pm_runtime_get_sync
+...
+-->pm_runtime_put_autosuspend(info->device)
+
+
+SO, has err

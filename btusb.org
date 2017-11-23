@@ -16,3 +16,13 @@
    --     %entry %2 %if.then %cond.true %if.then7 %cond.false11 %cond.end %if.end %if.end17 %if.then19 %if.end22 %if.then25 %if.then31 %if.end64
    --         [1].-6.2.14:dpm +1
    --         `-- usb_autopm_get_interface [1].14:dpm +1
+
+
+analysis void function
+
+基于位操作的比较 if (!test_bit(BTUSB_DID_ISO_RESUME, &data->flags)) 会执行 usb_autopm_get_interface
+
+基于 位操作的比较 if (test_and_clear_bit(BTUSB_DID_ISO_RESUME, &data->flags))
+			usb_autopm_put_interface(data->isoc ? data->isoc : data->intf);
+
+SO, has err

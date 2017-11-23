@@ -16,3 +16,21 @@
    --     %entry %2
    --         {%rhdev}.8.15.3.14.9.30.1:dpm +1
    --         `-- usb_remove_hcd {%rhdev}.8.15.3.14.9.30.1:dpm +1
+
+analysis 没看到usb_remove_hcd对dpm的+1操作
+
+此函数很简单
+
+/* may be called with controller, bus, and devices active */
+void c67x00_hcd_remove(struct c67x00_sie *sie)
+{
+	struct c67x00_hcd *c67x00 = sie->private_data;
+	struct usb_hcd *hcd = c67x00_hcd_to_hcd(c67x00);
+
+	c67x00_sched_stop_scheduler(c67x00);
+	usb_remove_hcd(hcd);
+	usb_put_hcd(hcd);
+}
+???
+
+SO, ???

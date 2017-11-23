@@ -9,3 +9,21 @@
    --         [1].0.1:dpm -1
    --         `-- pm_runtime_put_autosuspend [1]:dpm -1
    branch condition on an output argument
+
+analysis: void function
+不知change是如何变的。
+
+	regmap_update_bits_check(arizona->regmap, fll->base + 1,
+				 ARIZONA_FLL1_ENA, 0, &change);
+        ...
+	if (change)
+		pm_runtime_put_autosuspend(arizona->dev);-->__pm_runtime_suspend(dev,RPM_GET_PUT | RPM_ASYNC | RPM_AUTO);
+
+}
+
+NOTICE: static void arizona_disable_fll(struct arizona_fll *fll) void 函数
+Regmap 框架：简化慢速 I/O 接口优化性能
+http://www.tinylab.org/kernel-explore-regmap-framework/
+
+SO:has err
+

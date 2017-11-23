@@ -36,3 +36,10 @@
    --         `-- usb_reset_device [1].15.3.14:dpm -2
    --         [1].-17.0.8.15.3.14.9.0:dpm +1
    --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+
+analysis void function
+
+usb_reset_device-->pm_runtime_put_autosuspend-->__pm_runtime_suspend--> dpm-1
+
+how to get -2 OR +1 ???
+SO, has err
