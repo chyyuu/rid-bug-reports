@@ -1,11 +1,24 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/ti-vpe/vpe.c vpe_fw_cb [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/ti-vpe/vpe.c vpe_fw_cb [0/0]
+** 982304f897df56ae9c2d1941b9278b057602f76c
    -- Case 1 (existing summary):
    --     %entry %if.then %return
    --         [1].dev:dpm -1
    --         `-- vpe_runtime_put [1].dev:dpm -1
    --             `-- pm_runtime_put_sync [1]:dpm -1
    -- Case 2 (new summary):
-   --     %entry %if.end %return
+   --     %entry %return
    --         -
+   imprecise behavior tracking (registration)
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/ti-vpe/vpe.c vpe_probe [0/0]
+** b0c8d2cbb548c5dfa03739e17ed5eb822bf747c8
+   -- Case 1 (existing summary):
+   --     %entry %do.end5 %if.end20 %if.end47 %rel_m2m %rel_ctx %v4l2_dev_unreg %return
+   --         [1].dev:dpm +1
+   --         `-- vpe_runtime_get [1].dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %do.end5 %if.end20 %v4l2_dev_unreg %return
+   --         returns [0]
+   ineffective imbalance

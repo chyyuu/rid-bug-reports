@@ -1,102 +1,279 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd.c usb_hcd_end_port_resume [0/1]
-** TODO 6689a5022800e41ec7cc05de430f2497592cad09
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/devio.c usbdev_do_ioctl [0/0]
+** 51ac77751ed69c64113d6f96ef60166a788f8cf4
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end
-   --         -
+   --     %entry %2 %do.end54 %sw.epilog %if.end298 %return
+   --         {%call15}.0:dpm +1
+   --         `-- proc_resetdevice {%call15}.0:dpm +1
+   --             `-- usb_reset_device {%call15}.0:dpm +1
+   --                 `-- usb_reset_and_verify_device {%call15}.0:dpm +1
+   --                     `-- hub_port_logical_disconnect [1].0:dpm +1
+   --                         `-- kick_khubd [1].0:dpm +1
+   --                             `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                                 `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns -19
    -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.end
+   --     %entry %2 %return
+   --         returns -19
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/driver.c usb_unbind_interface [0/0]
+** 89ded0bf1a49694b454531c418aa8ef4a6b7f749
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %if.then17 %if.end23 %for.inc %for.cond %for.end %if.end59 %for.cond61 %if.then69 %if.end70
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %if.then17 %if.end23 %for.inc %for.cond %for.end %if.end59 %for.cond61 %for.body64 %for.inc65 %for.cond61 %if.then69 %if.end70
+   --         [1]:dpm -1
+   --         `-- usb_autopm_put_interface_no_suspend [1].14:dpm -1
+   --             `-- pm_runtime_put_noidle [1]:dpm -1
+   --         returns 0
+   loops
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd.c register_root_hub [0/0]
+** 97501274c54706b3482dae72426ec685f58f8d0b
+   -- Case 1 (existing summary):
+   --     %entry %2 %cond.end %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end37 %return
+   --         [1].0.13.11:dpm +1
+   --         `-- usb_new_device [1].11:dpm +1
+   --             `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd.c usb_hcd_end_port_resume [0/0]
+** 782456395511a87f5c0cffc54bfdf87cbe0a1444
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.end
    --         [1].13.11:dpm -1
    --         `-- pm_runtime_put_noidle [1]:dpm -1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd.c usb_hcd_start_port_resume [0/1]
-** TODO 6689a5022800e41ec7cc05de430f2497592cad09
+   -- Case 2 (new summary):
+   --     %entry %if.end
+   --         -
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd.c usb_hcd_start_port_resume [0/0]
+** 782456395511a87f5c0cffc54bfdf87cbe0a1444
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.end
+   --         [1].13.11:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %if.end
+   --         -
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c finish_port_resume [0/0]
+** dd6a3090ed5573be492a370b9da5e80455b248ed
+   -- Case 1 (existing summary):
+   --     %entry %if.else %if.end13 %if.end14 %if.end35 %if.end87
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_and_verify_device {%call15}.0:dpm +1
+   --             `-- hub_port_logical_disconnect [1].0:dpm +1
+   --                 `-- kick_khubd [1].0:dpm +1
+   --                     `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                         `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns -19
+   -- Case 2 (new summary):
+   --     %entry %if.end13 %if.end14 %if.end35 %if.end87
+   --         returns -19
+   imprecise branch condition tracking (bitmap)
+** 97d8d14e6d9dd3daf56c0c7aa7a0ba4542b69a4c
+   -- Case 1 (existing summary):
+   --     %entry %if.end14 %if.then15 %if.else %if.end13 %if.end14 %if.end35 %if.end87
+   --         {%call15}.0:dpm +2
+   --         `-- usb_reset_and_verify_device {%call15}.0:dpm +1
+   --             `-- hub_port_logical_disconnect [1].0:dpm +1
+   --                 `-- kick_khubd [1].0:dpm +1
+   --                     `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                         `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns -19
+   -- Case 2 (new summary):
+   --     %entry %if.end14 %if.then15 %if.end13 %if.end14 %if.end35 %if.end87
+   --         returns -19
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c hub_disconnect [0/0]
+** 9ba0bdcf2f3d83c2941330508d70effbdc7a66c1
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %if.end9
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %if.end %for.cond %if.end9
+   --         [1].14:dpm -1
+   --         `-- usb_autopm_put_interface_no_suspend [1].14:dpm -1
+   --             `-- pm_runtime_put_noidle [1]:dpm -1
+   imprecise branch condition tracking (data structure)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c     hub_irq [0/0]
+** 84cafe011e1d6dc084cfea07a19fcb178a1b6d37
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end28
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %for.cond %for.body %for.inc %for.cond %sw.epilog %if.end28
+   --         [1].27.0:dpm +1
+   --         `-- kick_khubd [1].0:dpm +1
+   --             `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                 `-- pm_runtime_get_noresume [1]:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c hub_port_connect [0/0]
+** 85cdd4281ba971980e7b2d84f6727cd84e60fef9
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then23 %if.end37 %if.end42 %if.end43 %if.end237
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then23 %if.end37 %if.end42 %if.end43 %if.end79 %for.cond %for.body %if.end108 %if.end173 %if.then175 %if.end181 %if.end237
+   --         {%call64}.30.1:dpm +1
+   --         `-- usb_new_device {%call64}.30.1:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c hub_post_reset [0/0]
+** be4e4dd32ae2ee9733543a5f49eb910e4d740c18
+   -- Case 1 (existing summary):
+   --     %entry %2
+   --         {%call}.0:dpm +1
+   --         `-- hub_activate [1].0:dpm +1
+   --             `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                 `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         returns 0
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c   hub_probe [0/0]
+** d98a82604cddc64c5fed44714cec035600e033b1
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end40 %if.end46 %if.end122 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end40 %if.end46 %if.end122 %return
+   --         {%call49}.30.1:dpm -1
+   --         `-- hub_configure [1].30.1:dpm -1
+   --             `-- pm_runtime_put [1]:dpm -1
+   --         returns 0
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c hub_reset_resume [1/1]
+** DUP c754cd31c3dabc9c8a42ed4e024a7ebc5489f02b
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end3
+   --         {%call}.0:dpm +1
+   --         `-- hub_activate [1].0:dpm +1
+   --             `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                 `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end3
+   --         returns 0
+   neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c  hub_resume [1/1]
+** DUP c754cd31c3dabc9c8a42ed4e024a7ebc5489f02b
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end3
+   --         {%call}.0:dpm +1
+   --         `-- hub_activate [1].0:dpm +1
+   --             `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                 `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end3
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c  port_event [0/0]
+** fcede29d732cd3b3fa4d74e3d7614a065cc62e44
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end11 %if.end38 %if.end129 %if.end157 %if.then173 %if.end177 %if.end180
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   --             `-- usb_reset_and_verify_device {%call15}.0:dpm +1
+   --                 `-- hub_port_logical_disconnect [1].0:dpm +1
+   --                     `-- kick_khubd [1].0:dpm +1
+   --                         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                             `-- pm_runtime_get_noresume [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %if.end37 %if.end38 %if.end129 %if.end157 %if.end177 %if.end180
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c usb_port_resume [0/0]
+** 07d6d958739abb6229792b2eabdacca59a3c8bcc
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end15 %if.then26 %if.end30 %do.end56 %if.end58 %SuspendCleared %if.then88 %if.end90 %if.end98 %do.end111 %return
+   --         {%call}.0:dpm +1
+   --         `-- hub_port_logical_disconnect [1].0:dpm +1
+   --             `-- kick_khubd [1].0:dpm +1
+   --                 `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                     `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end15 %if.then26 %if.end30 %do.end56 %if.end58 %SuspendCleared %if.then88 %if.end90 %if.end98 %do.end111 %return
+   --         returns [0]
+** 07d6d958739abb6229792b2eabdacca59a3c8bcc
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end15 %if.then26 %if.end30 %do.end56 %if.end58 %SuspendCleared %if.then88 %if.end90 %if.end98 %do.end111 %return
+   --         0.0:dpm +1
+   --         `-- hub_port_logical_disconnect [1].0:dpm +1
+   --             `-- kick_khubd [1].0:dpm +1
+   --                 `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                     `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end15 %if.then26 %if.end30 %do.end56 %if.end58 %SuspendCleared %if.then88 %if.end90 %if.end98 %do.end111 %return
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c usb_port_suspend [0/0]
+** 2b6f44b0538966fbb064053fdfbfc1761110865e
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %err_wakeup %if.end90 %if.end110 %if.end124
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %err_lpm3 %err_ltm %err_wakeup %if.end90 %if.end110 %if.then121 %if.end124
+   --         {%call}.30.1:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns 0
+   imprecise branch condition tracking (bitmap)
+** 2b6f44b0538966fbb064053fdfbfc1761110865e
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %err_wakeup %if.end90 %if.end110 %if.end124
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %err_lpm3 %err_ltm %err_wakeup %if.end90 %if.end110 %if.then121 %if.end124
+   --         0.30.1:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns 0
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c usb_remove_device [1/1]
+** BUG afe13dec85051dcec680cf579448916269eff96c
+   -- Case 1 (existing summary):
+   --     %entry %if.end %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.end %return
+   --         {%call}.0:dpm +1
+   --         +-- hub_port_logical_disconnect [1].0:dpm +1
+   --         |   `-- kick_khubd [1].0:dpm +1
+   --         |       `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --         |           `-- pm_runtime_get_noresume [1]:dpm +1
+   --         +-- usb_autopm_get_interface [1].14:dpm +1
+   --         |   `-- pm_runtime_get_sync [1]:dpm +1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns 0
+   neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c usb_reset_and_verify_device [0/0]
+** 6c55371dda262d0122b1496c1ee61eeaccb468a1
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end14 %re_enumerate %return
+   --         {%call15}.0:dpm +1
+   --         `-- hub_port_logical_disconnect [1].0:dpm +1
+   --             `-- kick_khubd [1].0:dpm +1
+   --                 `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                     `-- pm_runtime_get_noresume [1]:dpm +1
+   --         returns -19
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end14 %re_enumerate %return
+   --         returns -19
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/message.c __usb_queue_reset_device [0/0]
+** 6689a5022800e41ec7cc05de430f2497592cad09
    -- Case 1 (existing summary):
    --     %entry %2 %if.end
    --         -
    -- Case 2 (new summary):
    --     %entry %2 %if.then %if.end
-   --         [1].13.11:dpm +1
-   --         `-- pm_runtime_get_noresume [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hcd.c usb_remove_hcd [0/2]
-** TODO 72212470265c45ede2e2baac7dbbb2f675c32b17
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %do.body %do.body5 %if.end12 %do.end %do.end13 %if.end28 %if.end36
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %do.body %do.body5 %if.end12 %do.end %do.end13 %if.then24 %if.end27 %if.end28 %if.end36
-   --         0.30.1:dpm +1
-   --         `-- usb_disconnect 0.30.1:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-** TODO 72212470265c45ede2e2baac7dbbb2f675c32b17
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %do.body %do.body5 %if.end12 %do.end %do.end13 %if.end28 %if.end36
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %do.body %do.body5 %if.end12 %do.end %do.end13 %if.then24 %if.end27 %if.end28 %if.end36
-   --         {%rhdev}.8.15.3.14.9.30.1:dpm +1
-   --         `-- usb_disconnect [1].8.15.3.14.9.30.1:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c hub_activate [0/1]
-** TODO d2a2703540aa33429989e1e1a2f3242fd696a561
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end4 %if.then6 %if.end17 %if.then20 %do.body %do.body23 %do.body24 %do.end %do.end32 %do.body33 %do.end41 %do.end42 %if.end285
-   --         {%call47}.14:dpm +1
-   --         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
-   --             `-- pm_runtime_get_noresume [1]:dpm +1
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end4 %if.then6 %if.end17 %if.then20 %do.body %do.body23 %do.body24 %do.end %do.end32 %do.body33 %do.end41 %do.end42 %if.end285
-   --         [1].0:dpm +1
-   --         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
-   --             `-- pm_runtime_get_noresume [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c hub_port_connect_change [0/2]
-** TODO 57149d81481b3db7aef78bb31cb02cfc224781b5
-   -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end5 %if.end11 %if.end17 %land.lhs.true %land.lhs.true22 %if.then24 %if.then28 %if.end38 %if.end39 %if.then43 %return
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end5 %if.end11 %if.end17 %if.end39 %if.end44 %return
-   --         0.30.1:dpm +1
-   --         `-- hub_port_connect 0.30.1:dpm +1
-   --             `-- usb_disconnect 0.30.1:dpm +1
-   --                 `-- pm_runtime_get_sync [1]:dpm +1
-** TODO 57149d81481b3db7aef78bb31cb02cfc224781b5
-   -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end5 %if.end11 %if.end17 %land.lhs.true %land.lhs.true22 %if.then24 %if.then28 %if.end38 %if.end39 %if.then43 %return
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end5 %if.end11 %if.end17 %if.end39 %if.end44 %return
-   --         [1].30.0.8.15.3.14.9.30.1:dpm +1
-   --         `-- hub_port_connect [1].30.0.8.15.3.14.9.30.1:dpm +1
-   --             `-- usb_disconnect [1].8.15.3.14.9.30.1:dpm +1
-   --                 `-- pm_runtime_get_sync [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c  kick_khubd [0/1]
-** TODO 2b7d6b8cb21f78ecc1236fe8235cd82f726de407
-   -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %do.end %do.end3 %if.end
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %do.end %do.end3 %land.lhs.true %if.then %if.end
-   --         [1].0:dpm +1
-   --         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
-   --             `-- pm_runtime_get_noresume [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/core/hub.c usb_remove_device [0/2]
-** TODO c45c36e7c97796740229b102a3ac6bf8f61f4ee4
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %return
-   --         {%call2}.14:dpm -1
-   --         `-- usb_autopm_put_interface [1].14:dpm -1
-   --             `-- pm_runtime_put_sync [1]:dpm -1
-   --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %return
-   --         returns 0
-** TODO c45c36e7c97796740229b102a3ac6bf8f61f4ee4
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %return
-   --         [1].8.15.3.14.9.0:dpm -1
-   --         `-- usb_autopm_put_interface [1].14:dpm -1
-   --             `-- pm_runtime_put_sync [1]:dpm -1
-   --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %return
-   --         returns 0
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   --             `-- usb_reset_and_verify_device {%call15}.0:dpm +1
+   --                 `-- hub_port_logical_disconnect [1].0:dpm +1
+   --                     `-- kick_khubd [1].0:dpm +1
+   --                         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
+   --                             `-- pm_runtime_get_noresume [1]:dpm +1
+   imprecise branch condition tracking (bitmap)

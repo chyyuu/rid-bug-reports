@@ -1,51 +1,64 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/core/sdio.c mmc_sdio_detect [0/1]
-** TODO 98f74fec4bf255f6369be1904724b1e452646410
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/core/sdio.c mmc_sdio_detect [0/0]
+** 9ac0ed7829c950ae5f92e2b6ec02832fdd531ba2
    -- Case 1 (existing summary):
-   --     %entry %2 %do.body %if.end %do.end6 %do.body7 %if.end16 %do.end18 %if.end26 %if.end35 %out %if.end38
+   --     %entry %if.then20 %if.then22 %out %if.end38
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %if.end %do.end6 %do.body7 %if.end16 %do.end18 %if.then20 %if.end25 %if.end26 %if.end35 %out %if.end38
+   --     %entry %if.then20 %if.end26 %out %if.end38
    --         [1].43.1:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/core/sdio_bus.c sdio_bus_probe [0/2]
-** TODO d9f2fe4f55d869e83b6c0b3213c4060461e6cc45
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/core/sdio_bus.c sdio_bus_probe [0/0]
+** d705244c3dc5779fadc5c00d05ae64930db1c21c
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end10 %if.end14 %if.end18 %return
+   --     %entry %2 %if.end10 %if.end14 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.then6 %if.end9 %if.end10 %if.end14 %if.end18 %return
+   --     %entry %2 %if.then6 %if.end10 %if.end14 %return
    --         [1]:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns 0
-** TODO 26185f5bde0964929e0ea9a40ad37a6f509418b2
+   imprecise branch condition tracking (bitmap)
+** 6aa6fc417002e626a939c7d3e5ada900bd7fece6
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.then6 %if.then8 %disable_runtimepm %if.end25 %return
+   --     %entry %2 %if.then6 %disable_runtimepm %return
    --         [1]:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end10 %if.then13 %disable_runtimepm %if.then24 %if.end25 %return
+   --     %entry %2 %if.end10 %disable_runtimepm %if.then24 %return
    --         [1]:dpm -1
    --         `-- pm_runtime_put_noidle [1]:dpm -1
    --         returns [0]
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/core/sdio_bus.c sdio_bus_remove [0/2]
-** TODO 2ef379c8e787d9684ffcd35c6edb59585aee3c71
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/core/sdio_bus.c sdio_bus_remove [0/0]
+** 326ba937468697d44da7e84c809a69e9526ff16f
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end9 %if.end16 %if.end24
+   --     %entry %if.then %if.then15 %if.then22 %if.end24
+   --         [1]:dpm -1
+   --         +-- pm_runtime_get_sync [1]:dpm +1
+   --         +-- pm_runtime_put_noidle [1]:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.end %if.end9 %if.end16 %if.end24
-   --         [1]:dpm +1
-   --         `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns 0
-** TODO f0fc3f659307216ff8119b135c60de10bee62f1f
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end9 %if.end16 %if.end24
-   --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end9 %if.then15 %if.end16 %if.then22 %if.end24
+   --     %entry %if.then15 %if.then22 %if.end24
    --         [1]:dpm -2
    --         +-- pm_runtime_put_noidle [1]:dpm -1
    --         `-- pm_runtime_put_sync [1]:dpm -1
    --         returns 0
+   imprecise branch condition tracking (bitmap)
+** bef20d61b1a08dc66cbb22478767cd520cd31417
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.then15 %if.then22 %if.end24
+   --         [1]:dpm -1
+   --         +-- pm_runtime_get_sync [1]:dpm +1
+   --         +-- pm_runtime_put_noidle [1]:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.then %if.end24
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   imprecise branch condition tracking (bitmap)

@@ -1,38 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/isdn/gigaset/bas-gigaset.c int_in_work [0/4]
-** TODO e555a151e7695e5188e474c36eff0ae46bb186dc
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/isdn/gigaset/bas-gigaset.c int_in_work [0/0]
+** 4f31eb299c517ad439a60e6dd0c0d9933a4241b2
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end6 %sw.epilog
+   --     %entry %2 %if.then4 %if.end6 %sw.epilog
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.end6 %if.then12 %sw.epilog
-   --         [1].-17.0.8.15.3.14.9.0:dpm +1
-   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
-** TODO e555a151e7695e5188e474c36eff0ae46bb186dc
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end6 %sw.epilog
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end6 %if.then12 %sw.epilog
+   --     %entry %2 %if.then4 %if.end6 %if.then12 %sw.epilog
    --         {%call15}.0:dpm +1
    --         `-- usb_reset_device {%call15}.0:dpm +1
-** TODO e555a151e7695e5188e474c36eff0ae46bb186dc
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end6 %sw.epilog
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end6 %if.then12 %sw.epilog
-   --         [1].-17.0.15.3.14:dpm -1
-   --         `-- usb_reset_device [1].15.3.14:dpm -1
-   --         [1].-17.0.8.15.3.14.9.0:dpm +1
-   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
-** TODO e555a151e7695e5188e474c36eff0ae46bb186dc
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end6 %sw.epilog
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end6 %if.then12 %sw.epilog
-   --         [1].-17.0.15.3.14:dpm -2
-   --         `-- usb_reset_device [1].15.3.14:dpm -2
-   --         [1].-17.0.8.15.3.14.9.0:dpm +1
-   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   mysterious

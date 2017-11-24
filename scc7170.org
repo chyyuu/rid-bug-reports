@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/wireless/rtl818x/rtl8187/dev.c rtl8187_disconnect [0/0]
+** c45c36e7c97796740229b102a3ac6bf8f61f4ee4
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %return
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %return
+   --         -

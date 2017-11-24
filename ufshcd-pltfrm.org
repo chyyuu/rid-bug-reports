@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/scsi/ufs/ufshcd-pltfrm.c ufshcd_pltfrm_probe [0/0]
+** 9972e758c3956f364b6418d95d0895bde9636751
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end9 %return
+   --         [1].3:dpm +1
+   --         `-- ufshcd_init [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end9 %return
+   --         returns 0
+   imprecise branch condition tracking

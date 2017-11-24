@@ -1,12 +1,12 @@
 #+TODO: TODO CHECK | BUG DUP
 * /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-lite.c fimc_lite_open [1/1]
-** BUG 8964b82f5d609e2bab53d68917db7800fe8ed035
+** BUG 663e57b5962c7ce330192f4b28519a3de1c27f48
    -- Case 1 (existing summary):
-   --     %entry %if.end %if.end4 %cond.true23 %cond.end %cond.end32 %err_pm %unlock
+   --     %entry %if.end %if.end4 %err_pm %unlock
    --         returns [0]
    -- Case 2 (new summary):
    --     %entry %if.end %unlock
-   --         [video_device].2.9.pdev.dev:dpm +1
+   --         {%call}.pdev.dev:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
    @

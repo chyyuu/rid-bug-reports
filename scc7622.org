@@ -1,11 +1,33 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/InterfaceIdleMode.c InterfaceAbortIdlemode [0/1]
-** TODO 72c77f5784d0f3f561133796df5a2864a3f4e703
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/InterfaceIdleMode.c InterfaceAbortIdlemode [1/1]
+** BUG dca42bae6cdf1ea9d99f73da0b057a473ba12006
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.then11 %if.then14 %return
+   --     %entry %2 %if.end %if.then11 %if.end16 %if.end169 %if.end170 %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %2 %land.lhs.true %if.then %if.end %if.then11 %if.then14 %return
+   --     %entry %2 %if.then %if.end %if.then11 %if.end16 %if.end169 %if.end170 %return
    --         [1].73.1.14:dpm +1
    --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns [0]
+   neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/Misc.c InitCardAndDownloadFirmware [0/0]
+** f8f3559035fab4b203862e2f69b8286a4d04d1cc
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end10 %return
+   --         {%call15}.0:dpm +1
+   --         `-- reset_card_proc {%call15}.0:dpm +1
+   --             `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/bcm/Misc.c reset_card_proc [0/0]
+** 31d5b2464f5cfa187ba67dee564331c989adf725
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end %if.then28 %err_exit
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %err_exit
    --         returns [0]

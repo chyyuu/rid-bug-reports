@@ -1,22 +1,32 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/ehci-platform.c ehci_platform_power_off [0/1]
-** TODO cf593d3260c9721dda421c10587ebce89091a1e0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/ehci-platform.c ehci_platform_power_off [1/1]
+** 16f758c74ab4f27e0e163e91cad3ecbd8027939c
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %for.cond %for.inc %for.cond %for.end
-   --         [1].3.9.33.84.2.0:dpm -1
-   --         `-- phy_exit [1].0:dpm -1
+   --     %entry %2 %for.cond %for.inc %for.cond %for.end
+   --         -
    -- Case 2 (new summary):
    --     %entry %2 %if.then %for.cond %for.inc %for.cond %for.end
-   --         [1].3.9.33.84.2.0:dpm -2
+   --         {%call}.33.84.2.0:dpm -1
+   --         `-- phy_exit [1].0:dpm -1
+   imprecise summary tracking (leave for future)
+** BUG 16f758c74ab4f27e0e163e91cad3ecbd8027939c
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.end
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %for.cond %for.inc %for.cond %for.end
+   --         {%call}.33.84.2.0:dpm -2
    --         +-- phy_exit [1].0:dpm -1
    --         `-- phy_power_off [1].0:dpm -1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/ehci-platform.c ehci_platform_power_on [0/1]
-** TODO 38dd07b9dd17891e8cebaef6eefed60bbd46ed6f
+   neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/host/ehci-platform.c ehci_platform_power_on [0/0]
+** b07273195c4e303ec1a1b8fc509d631c62e8ea38
    -- Case 1 (existing summary):
-   --     %entry %2 %for.cond %land.rhs %land.end %for.body %err_disable_clks %while.cond %return
-   --         returns [0]
+   --     %entry %2 %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %return
+   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %if.then9 %err_disable_clks %while.cond %return
-   --         [1].3.9.33.84.2.0:dpm -1
+   --     %entry %2 %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %if.then9 %if.end14 %return
+   --         {%call}.33.84.2.0:dpm -1
    --         `-- phy_init [1].0:dpm -1
-   --         returns [0]
+   --         returns 0
+   imprecise summary tracking (leave for future)

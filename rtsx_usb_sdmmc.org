@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/rtsx_usb_sdmmc.c sdmmc_set_ios [0/0]
+** 19b1a3f4b2e3cd2a290bc9333ab566ca53b1aec3
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end44
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end10 %do.end44
+   --         {%call}.0.3:dpm -1
+   --         `-- sd_set_power_mode [1].0.3:dpm -1
+   --             `-- pm_runtime_put [1]:dpm -1
+   imprecise branch condition tracking

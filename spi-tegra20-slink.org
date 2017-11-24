@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/spi/spi-tegra20-slink.c tegra_slink_resume [1/1]
+** BUG 0ff21359198e74b0dc09da6abc02ca5823e15f9d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %return
+   --         [1]:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

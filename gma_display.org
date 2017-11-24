@@ -10,31 +10,31 @@
    --     %entry %2 %if.end %if.end7 %if.then13 %if.end17
    --         returns 0
 * /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/gma_display.c gma_crtc_cursor_set [0/1]
-** TODO 495b4adb864d98f27a99efbb1a0518b8baa35ad6
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end %if.end15 %return
-   --         [1].0.38.43:dpm +1
-   --         `-- gma_power_begin [1].38.43:dpm +1
-   --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.then8 %if.end %if.end15 %return
-   --         returns 0
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/gma_display.c gma_crtc_load_lut [0/1]
-** TODO 716f2fcc268b74e46d1896d360d5dcd77715d470
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end71
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.else %for.cond28 %for.body31 %for.inc68 %for.cond28 %for.end70 %if.end71
-   --         [1].0.38.43:dpm +1
-   --         `-- gma_power_begin [1].38.43:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/gma_display.c gma_pipe_set_base [0/1]
-** TODO f09a6feb4f149f713b348543410f51b88b4aacad
+** TODO 0df22841dce1b4dc45139e1771e27caa2c0d9b78
    -- Case 1 (existing summary):
    --     %entry %2 %if.then %return
    --         [1].0.38.43:dpm +1
    --         `-- gma_power_begin [1].38.43:dpm +1
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.then8 %gma_pipe_cleaner %if.end78 %gma_pipe_set_base_exit %return
+   --     %entry %2 %if.then %if.then8 %return
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/gma_display.c gma_crtc_load_lut [0/1]
+** TODO 09f543e805cbf9fae23d06bff9a2e50210ce3abe
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %for.cond %for.inc %for.cond %for.end %if.end71
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %for.cond28 %for.inc68 %for.cond28 %if.end71
+   --         [1].0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/gma_display.c gma_pipe_set_base [0/1]
+** TODO 4e3cdfb8f730227b7c6f8bc1fa7e1fd353a52c21
+   -- Case 1 (existing summary):
+   --     %entry %2 %gma_pipe_cleaner %gma_pipe_set_base_exit %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %return
+   --         [1].0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
    --         returns 0

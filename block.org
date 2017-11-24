@@ -10,3 +10,16 @@
    --     %entry %2 %cond.true %cond.end %if.then %if.then26 %if.end29 %if.end59 %out %if.then68 %if.end69
    --         returns [0]
    imprecise tracking of branch conditions (bitmap)
+** dc00798b286c95947d58f761985a52607d494566
+   -- Case 1 (existing summary):
+   --     %entry %2 %cond.true %cond.end %if.then26 %if.end29 %if.end59 %out %if.then68 %if.end69
+   --         [1].5.2.0.1:dpm -1
+   --         `-- mmc_put_card [1].1:dpm -1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %cond.true %cond.end %if.then %if.then26 %if.end29 %if.end59 %out %if.end69
+   --         [1].5.2.0.1:dpm +1
+   --         `-- mmc_get_card [1].1:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   imprecise tracking of branch conditions (bitmap)

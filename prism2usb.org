@@ -1,0 +1,13 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/wlan-ng/prism2usb.c prism2sta_resume [1/1]
+** BUG 56065fc03dcf029c7524db7922dc6fe9c4225aa4
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         returns -19
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then5 %return
+   --         {%call15}.0:dpm +1
+   --         `-- hfa384x_corereset {%call15}.0:dpm +1
+   --             `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns -19
+   imprecise summary tracking

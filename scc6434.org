@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/chipidea/udc.c ci_udc_start [0/0]
+** 27acb2f75af20a55139aaf27bca6b4a62a7a059c
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end7 %if.end20 %if.else %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end7 %if.end20 %if.end34 %return
+   --         [1].8:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   imprecise branch condition tracking

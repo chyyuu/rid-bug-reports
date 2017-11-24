@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/can/c_can/c_can_platform.c c_can_suspend [0/0]
+** a2928e6a1beaec16b4d40bcaf2abc0e6a4c1d0c6
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end5 %return
+   --         {%call}.3:dpm -1
+   --         `-- c_can_power_down {%call}.3:dpm -1
+   --         returns 0
+   imprecise summary tracking (leave for future)

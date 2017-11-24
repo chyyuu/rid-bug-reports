@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/tty/serial/mfd.c serial_hsu_remove [0/1]
-** TODO 1b07336ef082c23ff45c828349b3fef7be87fa3d
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/tty/serial/mfd.c serial_hsu_remove [0/0]
+** 38503c003d198580d6bce1adc289191e3360de82
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
+   --     %entry %return
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end5 %return
+   --     %entry %if.end %return
    --         [1].43:dpm +1
    --         `-- pm_runtime_get_noresume [1]:dpm +1
+   imprecise summary tracking

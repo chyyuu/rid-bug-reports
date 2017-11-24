@@ -9,3 +9,12 @@
    --         [1].-4.8.14:dpm +1
    --         `-- usb_autopm_get_interface [1].14:dpm +1
    neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/hso.c reset_device [0/0]
+** fedf02bbeb38912364c6f4b5ac2047228c12b572
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end21
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else18 %if.end21
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1

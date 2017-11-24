@@ -1,24 +1,22 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/rfbi.c omap_rfbihw_probe [1/1]
-** BUG 3d31db339369129ce53073aa1dbe09a2fe1f960c
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/rfbi.c omap_rfbihw_probe [0/0]
+** 76fa91cd83d00443415f5310c5adc0ad34e6a9ee
    -- Case 1 (existing summary):
-   --     %entry %if.end %if.end7 %if.then11 %return
+   --     %entry %if.end7 %if.then11 %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %if.end7 %if.end14 %if.then19 %err_runtime_get %return
+   --     %entry %if.end7 %if.end14 %return
    --         [rfbi].0.dev:dpm +1
    --         `-- rfbi_runtime_get [rfbi].0.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
-   +
 * /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/rfbi.c rfbi_dump_regs [1/1]
-** BUG 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         [rfbi].0.dev:dpm +1
-   --         `-- rfbi_runtime_get [rfbi].0.dev:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-   -- Case 2 (new summary):
    --     %entry %if.end %return
    --         -
-   +
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         [rfbi].0.dev:dpm +1
+   --         `-- rfbi_runtime_get [rfbi].0.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1

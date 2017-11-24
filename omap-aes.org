@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/crypto/omap-aes.c omap_aes_probe [1/1]
+** BUG d0ca33c3f471ddd9b97eac398f2d309139b89396
+   -- Case 1 (existing summary):
+   --     %entry %cond.true %cond.end %if.end19 %if.end24 %if.then41 %err_irq %err_res %err_data %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %cond.true %cond.end %if.end19 %err_res %err_data %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

@@ -1,11 +1,22 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/touchscreen/usbtouchscreen.c usbtouch_open [0/1]
-** TODO 3bee9a28aa2deb93f23947fae37979c93d8f2ea2
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/touchscreen/usbtouchscreen.c usbtouch_open [0/0]
+** 10ce9fd96a60057511ca94f4de68398c1617eede
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %out
+   --     %entry %2 %out_put %out
+   --         {%call}.6.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns -5
+   -- Case 2 (new summary):
+   --     %entry %2 %out_put %out
+   --         returns -5
+   why this?!
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/touchscreen/usbtouchscreen.c usbtouch_probe [0/0]
+** 0b02b447361f3837863136a9982b526af14d006d
+   -- Case 1 (existing summary):
+   --     %entry %if.end3 %if.end9 %cond.true %cond.end %if.then132 %out_free_urb %out_free_buffers %out_free %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %2 %if.then %out
-   --         [1].39.9.6.14:dpm +1
-   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --     %entry %if.end3 %if.end9 %cond.true %cond.end %if.end166 %if.then184 %if.then189 %out_do_exit %out_free_urb %out_free_buffers %out_free %return
+   --         [1].14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
    --         returns [0]

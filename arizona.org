@@ -9,3 +9,26 @@
    --         [1].0.1:dpm -1
    --         `-- pm_runtime_put_autosuspend [1]:dpm -1
    branch condition on an output argument
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/arizona.c arizona_enable_fll [0/0]
+** 6ca165304e3c730a10b279e9c6fbd36593a70e59
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end28 %if.end44 %if.then61 %return
+   --         [1].0.1:dpm +1
+   --         `-- pm_runtime_get [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end28 %if.end44 %return
+   --         returns 0
+   branch condition on an output argument
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/arizona.c arizona_set_fll [0/0]
+** 06da743452421dc9dbeea253fcffd47188198239
+   -- Case 1 (existing summary):
+   --     %entry %if.end10 %if.end15 %if.then20 %if.end22 %return
+   --         [1].0.1:dpm +1
+   --         `-- arizona_enable_fll [1].0.1:dpm +1
+   --             `-- pm_runtime_get [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         returns 0
+   branch condition on an output argument

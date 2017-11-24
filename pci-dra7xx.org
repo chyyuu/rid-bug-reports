@@ -1,14 +1,44 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/pci/host/pci-dra7xx.c dra7xx_pcie_remove [0/1]
-** TODO 46237757890aa8c98f386fd490dd1140b388e024
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/pci/host/pci-dra7xx.c dra7xx_pcie_probe [1/1]
+** 5ab8a20843125b234c6981d63b91e6f23a64459c
    -- Case 1 (existing summary):
-   --     %entry %if.end %while.cond %while.body %while.cond %while.end
-   --         [1].dev.9.phy.0:dpm -1
-   --         `-- phy_exit [1].0:dpm -1
+   --     %entry %if.end %if.end5 %if.end16 %if.end21 %for.cond %if.end35 %if.end40 %for.inc %for.cond %for.end %if.end56 %return
+   --         {%call22}.0:dpm -1
+   --         `-- phy_init [1].0:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end5 %if.end16 %if.end21 %for.cond %for.end %if.end56 %return
+   --         returns 0
+** BUG 0db7d242d4878631d32e96b012ab8acf045bc41a
+   -- Case 1 (existing summary):
+   --     %entry %if.end %if.end5 %if.end16 %if.end21 %for.cond %if.then32 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %if.end5 %if.end16 %if.end21 %for.cond %if.end35 %if.end40 %for.inc %for.cond %for.end %err_phy %while.cond %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         {%call22}.0:dpm -1
+   --         `-- phy_init [1].0:dpm -1
+   --         returns [0]
+   @
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/pci/host/pci-dra7xx.c dra7xx_pcie_remove [1/1]
+** 3e7fd7a18db313a91c4535f965c275e4c52f6ee6
+   -- Case 1 (existing summary):
+   --     %entry %if.end %while.cond %while.end
    --         returns 0
    -- Case 2 (new summary):
    --     %entry %if.end %while.cond %while.body %while.cond %while.end
-   --         [1].dev.9.phy.0:dpm -2
+   --         {%call}.phy.0:dpm -1
+   --         `-- phy_exit [1].0:dpm -1
+   --         returns 0
+** BUG 3e7fd7a18db313a91c4535f965c275e4c52f6ee6
+   -- Case 1 (existing summary):
+   --     %entry %if.end %while.cond %while.end
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.end %while.cond %while.body %while.cond %while.end
+   --         {%call}.phy.0:dpm -2
    --         +-- phy_exit [1].0:dpm -1
    --         `-- phy_power_off [1].0:dpm -1
    --         returns 0
+   neglect possible error

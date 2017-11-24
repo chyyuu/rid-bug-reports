@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/serial/usb-serial.c serial_cleanup [0/1]
-** TODO 1e863162fefdb14a2533830007c9b37cbc1904d7
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/serial/usb-serial.c serial_cleanup [0/0]
+** 7b5ce23fd2bceaa1e837e75df5d4c7530682fb3b
    -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end2 %if.then5 %return
+   --     %entry %2 %return
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end2 %if.end6 %if.then11 %if.end12 %return
+   --     %entry %2 %if.end6 %if.then11 %return
    --         [1].35.0.2.14:dpm -1
    --         `-- usb_autopm_put_interface [1].14:dpm -1
+   imprecise branch condition tracking (FIX!)

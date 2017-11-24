@@ -1,12 +1,23 @@
 #+TODO: TODO CHECK | BUG DUP
 * /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/s3c-camif/camif-capture.c s3c_camif_open [1/1]
-** BUG c88e9ae0240eae7fb90166c6c27a87486788e2d7
+** BUG 76d70c6937d51683d3faed00b338888ef35dbcc4
    -- Case 1 (existing summary):
-   --     %entry %do.body %if.end %do.end %if.end8 %if.end12 %if.end17 %if.then20 %unlock %return
-   --         [video_device].2.9.camif.dev:dpm +1
-   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --     %entry %if.end8 %if.end12 %if.end17 %if.end21 %err_pm %unlock %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %do.body %if.end %do.end %if.end8 %if.end12 %if.end17 %if.end21 %err_pm %unlock %return
+   --     %entry %if.end8 %if.end12 %err_pm %unlock %return
+   --         {%call}.camif.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/s3c-camif/camif-core.c s3c_camif_probe [1/1]
+** BUG f3608e20fdd67baf23eb2bb84b7048da64430383
+   -- Case 1 (existing summary):
+   --     %entry %if.end26 %if.end29 %if.end34 %if.end38 %if.end42 %if.end60 %if.end64 %if.end68 %if.end72 %err_unlock %err_sens %err_mdev %err_alloc %err_pm %err_clk %err_sd %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end26 %if.end29 %if.end34 %if.end38 %if.end42 %err_pm %err_clk %err_sd %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
    @

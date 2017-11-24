@@ -1,219 +1,196 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dpi.c dpi_display_enable [0/1]
-** TODO c6ee853759592243f23859e591a32d9056c2446b
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dpi.c dpi_display_enable [1/1]
+** BUG a1e9d6aa1347d0a40dbe21eafcafa07ec9d3d42b
    -- Case 1 (existing summary):
-   --     %entry %if.end %lor.lhs.false %if.end5 %if.then7 %if.then10 %err_reg_enable %err_no_out_mgr %err_no_reg %return
+   --     %entry %if.then7 %err_reg_enable %err_no_out_mgr %err_no_reg %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %lor.lhs.false %if.end5 %if.end12 %if.end16 %if.end21 %if.then23 %if.then26 %err_get_dsi %err_src_sel %err_get_dispc %if.end53 %err_reg_enable %err_no_out_mgr %err_no_reg %return
-   --         [dpi].2.dev.9.pdev.dev:dpm +1
-   --         `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
+   --     %entry %if.end12 %if.end16 %if.then23 %err_get_dsi %err_src_sel %err_get_dispc %err_reg_enable %err_no_out_mgr %err_no_reg %return
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- dsi_runtime_get {%call}.pdev.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dpi.c dpi_init_pll [0/1]
-** TODO 7e67ff9fdcec21e8a48787cf11f8a676be8155ce
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dpi.c dpi_verify_dsi_pll [1/1]
+** BUG 526288be5fe7cc5b9cb4d6989b8417e1d870d26c
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %if.end %if.end3 %if.then6 %return
-   --         {%call}.dev.9.pdev.dev:dpm +1
-   --         `-- dpi_verify_dsi_pll [1].dev.9.pdev.dev:dpm +1
-   --             `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
-   --                 `-- pm_runtime_get_sync [1]:dpm +1
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dpi.c dpi_verify_dsi_pll [0/1]
-** TODO 35a901e1481199d78d80b191b663143ca5383623
-   -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         [1].dev.9.pdev.dev:dpm +1
-   --         `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-   -- Case 2 (new summary):
    --     %entry %if.end %if.then3 %return
    --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_display_enable [0/1]
-** TODO 7472e167e2537af6fe67966703c68eca04433283
-   -- Case 1 (existing summary):
-   --     %entry %do.body %if.end %do.end %if.end8 %if.then11 %err_get_dsi %do.body19 %if.end24 %do.end25 %return
-   --         [1].dev.9.pdev.dev:dpm +1
-   --         `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- dsi_runtime_get {%call}.pdev.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %do.body %if.end %do.end %if.end8 %if.end12 %if.then15 %err_init_dsi %err_get_dsi %do.body19 %if.end24 %do.end25 %return
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_display_enable [1/1]
+** BUG 27f3885a8b180a6e18134f73ee00dd4d5528436a
+   -- Case 1 (existing summary):
+   --     %entry %if.end8 %if.end12 %err_init_dsi %err_get_dsi %return
    --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_dump_clocks [0/1]
-** TODO ba4433039067bc037da65708c557c4a83f331188
-   -- Case 1 (existing summary):
-   --     %entry %for.cond %for.body %if.end %for.inc %for.cond %for.end
-   --         -
    -- Case 2 (new summary):
-   --     %entry %for.cond %for.body %if.then %if.end %for.inc %for.cond %for.end
-   --         {%call}.dev.9.pdev.dev:dpm +1
-   --         `-- dsi_dump_dsidev_clocks [1].dev.9.pdev.dev:dpm +1
-   --             `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
-   --                 `-- pm_runtime_get_sync [1]:dpm +1
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_dump_dsidev_clocks [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
-   -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         [1].dev.9.pdev.dev:dpm +1
-   --         `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
+   --     %entry %if.end8 %err_get_dsi %return
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- dsi_runtime_get {%call}.pdev.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
-   -- Case 2 (new summary):
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_dump_dsidev_clocks [1/1]
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
    --     %entry %if.end %return
    --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_dump_dsidev_regs [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
-   -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         [1].dev.9.pdev.dev:dpm +1
-   --         `-- dsi_runtime_get [1].dev.9.pdev.dev:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
    -- Case 2 (new summary):
+   --     %entry %return
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- dsi_runtime_get {%call}.pdev.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c dsi_dump_dsidev_regs [1/1]
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
    --     %entry %if.end %return
    --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dss.c dss_dump_clocks [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- dsi_runtime_get {%call}.pdev.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dsi.c omap_dsihw_probe [1/1]
+** BUG 0a130fcc1a103728f2132eb724ad4621318eec8d
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
+   --     %entry %do.end40 %if.end55 %if.end64 %if.end80 %if.end89 %if.end105 %if.end120 %if.then133 %if.end140 %while.cond %land.rhs %land.end %for.cond %for.inc %for.cond %for.end %if.end162 %if.then199 %err_probe_of %err_runtime_get %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %do.end40 %if.end55 %if.end64 %if.end80 %if.end89 %if.end105 %if.end120 %if.then133 %if.end140 %while.cond %land.rhs %land.end %for.cond %for.inc %for.cond %for.end %if.end162 %err_runtime_get %return
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- dsi_runtime_get {%call}.pdev.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dss.c dss_dump_clocks [1/1]
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
+   --     %entry %if.end %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %return
    --         [dss].0.dev:dpm +1
    --         `-- dss_runtime_get [dss].0.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
-   -- Case 2 (new summary):
-   --     %entry %if.end %return
-   --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dss.c dss_dump_regs [0/1]
-** TODO 2036fe2ddaf7b26de8e6dfe199485e616954d874
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dss.c dss_dump_regs [1/1]
+** BUG 16d401f230c8bac0a3b92c19e0bad00084cca968
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
+   --     %entry %if.end36 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %return
    --         [dss].0.dev:dpm +1
    --         `-- dss_runtime_get [dss].0.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
-   -- Case 2 (new summary):
-   --     %entry %if.end %if.end36 %return
-   --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi4.c hdmi_dump_regs [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/dss.c omap_dsshw_probe [0/0]
+** 971c2f02b43c0dc93247ef4b9eaebbb2093dac22
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         [hdmi].1.dev:dpm +1
-   --         `-- hdmi_runtime_get [hdmi].1.dev:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --     %entry %if.end11 %if.end15 %err_setup_clocks %return
+   --         returns [0]
    -- Case 2 (new summary):
+   --     %entry %if.end11 %if.end15 %if.end19 %err_setup_clocks %return
+   --         [dss].0.dev:dpm +1
+   --         `-- dss_runtime_get [dss].0.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi4.c hdmi_dump_regs [1/1]
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
    --     %entry %if.end %return
    --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi4.c hdmi_power_on_core [0/1]
-** TODO 589ba33c9c9106cf6a5893fee460b0d19faf363e
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         [hdmi].1.dev:dpm +1
+   --         `-- hdmi_runtime_get [hdmi].1.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi4.c hdmi_power_on_core [1/1]
+** BUG 38503c003d198580d6bce1adc289191e3360de82
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
+   --     %entry %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %if.then3 %err_runtime_get %return
+   --     %entry %if.end %return
    --         [hdmi].1.dev:dpm +1
    --         `-- hdmi_runtime_get [hdmi].1.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi4.c hdmi_read_edid [0/2]
-** TODO 87a0c0bdf2fff7cbc8f613b36f67e88d7e2cce48
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi4.c hdmi_read_edid [1/1]
+** BUG 350b1b71bad0605a7d68e7fd5fbdae512abb4ce9
    -- Case 1 (existing summary):
-   --     %entry %if.then %if.end %if.end5 %if.end9 %return
+   --     %entry %if.end5 %return
+   --         returns {%call7}
+   -- Case 2 (new summary):
+   --     %entry %if.then %if.end5 %return
    --         [hdmi].1.dev:dpm +1
    --         `-- hdmi_core_enable [hdmi].1.dev:dpm +1
    --             `-- hdmi_power_on_core [hdmi].1.dev:dpm +1
    --                 `-- hdmi_runtime_get [hdmi].1.dev:dpm +1
    --                     `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %if.end5 %if.then8 %if.end9 %return
-   --         [hdmi].1.dev:dpm -1
-   --         `-- hdmi_core_disable [hdmi].1.dev:dpm -1
-   --             `-- hdmi_power_off_core [hdmi].1.dev:dpm -1
-   --                 `-- hdmi_runtime_put [hdmi].1.dev:dpm -1
-   --                     `-- pm_runtime_put_sync [1]:dpm -1
-   --         returns [0]
-** TODO b0bc6e77d550ff60aaba19fefcffa601cd756388
+   --         returns {%call7}
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi5.c hdmi_dump_regs [1/1]
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
    -- Case 1 (existing summary):
-   --     %entry %if.then %if.end %if.end5 %if.end9 %return
-   --         [hdmi].1.dev:dpm +1
-   --         `-- hdmi_core_enable [hdmi].1.dev:dpm +1
-   --             `-- hdmi_power_on_core [hdmi].1.dev:dpm +1
-   --                 `-- hdmi_runtime_get [hdmi].1.dev:dpm +1
-   --                     `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %if.then %if.end %if.end5 %if.then8 %if.end9 %return
-   --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi5.c hdmi_dump_regs [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
-   -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         [hdmi745].1.dev:dpm +1
-   --         `-- hdmi_runtime_get810 [hdmi745].1.dev:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-   -- Case 2 (new summary):
    --     %entry %if.end %return
    --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi5.c hdmi_power_on_core [0/1]
-** TODO 589ba33c9c9106cf6a5893fee460b0d19faf363e
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         [hdmi745].1.dev:dpm +1
+   --         `-- hdmi_runtime_get810 [hdmi745].1.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi5.c hdmi_power_on_core [1/1]
+** BUG 38503c003d198580d6bce1adc289191e3360de82
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
+   --     %entry %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %if.then3 %err_runtime_get %return
+   --     %entry %if.end %return
    --         [hdmi745].1.dev:dpm +1
    --         `-- hdmi_runtime_get810 [hdmi745].1.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi5.c hdmi_read_edid [0/2]
-** TODO 87a0c0bdf2fff7cbc8f613b36f67e88d7e2cce48
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/hdmi5.c hdmi_read_edid [1/1]
+** BUG 350b1b71bad0605a7d68e7fd5fbdae512abb4ce9
    -- Case 1 (existing summary):
-   --     %entry %if.then %if.end %if.end5 %if.end9 %return
+   --     %entry %if.end5 %return
+   --         returns {%call10}
+   -- Case 2 (new summary):
+   --     %entry %if.then %if.end5 %return
    --         [hdmi745].1.dev:dpm +1
    --         `-- hdmi_core_enable824 [hdmi745].1.dev:dpm +1
    --             `-- hdmi_power_on_core825 [hdmi745].1.dev:dpm +1
    --                 `-- hdmi_runtime_get810 [hdmi745].1.dev:dpm +1
    --                     `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %if.end5 %if.then8 %if.end9 %return
-   --         [hdmi745].1.dev:dpm -1
-   --         `-- hdmi_core_disable821 [hdmi745].1.dev:dpm -1
-   --             `-- hdmi_power_off_core822 [hdmi745].1.dev:dpm -1
-   --                 `-- hdmi_runtime_put809 [hdmi745].1.dev:dpm -1
-   --                     `-- pm_runtime_put_sync [1]:dpm -1
-   --         returns [0]
-** TODO b0bc6e77d550ff60aaba19fefcffa601cd756388
+   --         returns {%call10}
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/venc.c omap_venchw_probe [1/1]
+** BUG 45e9d3eb4ffad4f72617b65edf9bf8f6b23e8ce0
    -- Case 1 (existing summary):
-   --     %entry %if.then %if.end %if.end5 %if.end9 %return
-   --         [hdmi745].1.dev:dpm +1
-   --         `-- hdmi_core_enable824 [hdmi745].1.dev:dpm +1
-   --             `-- hdmi_power_on_core825 [hdmi745].1.dev:dpm +1
-   --                 `-- hdmi_runtime_get810 [hdmi745].1.dev:dpm +1
-   --                     `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %if.then %if.end %if.end5 %if.then8 %if.end9 %return
-   --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/venc.c venc_dump_regs [0/1]
-** TODO 9c08c1706f7d4ae53a06c89cde59c1c7a0e24d38
-   -- Case 1 (existing summary):
-   --     %entry %if.then %return
+   --     %entry %if.end7 %if.end11 %err_runtime_get %return
    --         [venc].0.dev:dpm +1
    --         `-- venc_runtime_get [venc].0.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
    -- Case 2 (new summary):
+   --     %entry %if.end7 %if.end11 %do.end28 %if.then31 %err_runtime_get %return
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/venc.c venc_dump_regs [1/1]
+** BUG 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
    --     %entry %if.end %return
    --         -
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/venc.c venc_power_on [0/1]
-** TODO c6535d7ebf7a5064186fedb1d2a75df8880d8b05
-   -- Case 1 (existing summary):
-   --     %entry %if.then %err0 %return
+   -- Case 2 (new summary):
+   --     %entry %return
    --         [venc].0.dev:dpm +1
    --         `-- venc_runtime_get [venc].0.dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/video/fbdev/omap2/dss/venc.c venc_power_on [1/1]
+** BUG e190345aa3e6bb80b762de6be941229effc08e45
+   -- Case 1 (existing summary):
+   --     %entry %if.then2 %if.end4 %if.end10 %err1 %err0 %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %if.then2 %if.end4 %if.end10 %if.then13 %err1 %err0 %return
+   --     %entry %err0 %return
+   --         [venc].0.dev:dpm +1
+   --         `-- venc_runtime_get [venc].0.dev:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]

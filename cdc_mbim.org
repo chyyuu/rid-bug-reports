@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/cdc_mbim.c cdc_mbim_suspend [0/1]
+** CHECK 349b069c5922dcc417788bc41771f9b5600b454f
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %error
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.then11 %if.end16 %if.then18 %error
+   --         [1].14:dpm +1
+   --         `-- usbnet_resume [1].14:dpm +1
+   --         returns [0]
+   imprecise summary tracking (or else?)

@@ -1,11 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/mipi-csis.c s5pcsis_pm_suspend [0/1]
-** TODO 4b9970f6c685fcf531ebd9c82b04c8e581b01ac1
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/mipi-csis.c s5pcsis_pm_suspend [0/0]
+** 9900505066f4cd88d5c96a5dc2678682799992af
    -- Case 1 (existing summary):
    --     %entry %if.then6 %if.end10 %if.end22 %unlock
+   --         {%call2}.-sd.phy.0:dpm -1
+   --         `-- phy_power_off [1].0:dpm -1
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.then6 %if.end10 %unlock
-   --         [1].9.-sd.phy.0:dpm -1
-   --         `-- phy_power_off [1].0:dpm -1
+   --     %entry %if.then6 %unlock
    --         returns [0]

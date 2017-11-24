@@ -1,21 +1,23 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/keyboard/sh_keysc.c sh_keysc_resume [0/1]
-** TODO a57d5c150eeff47cba1c3bfe4a6bdb0bc4bb2ede
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/keyboard/sh_keysc.c sh_keysc_resume [0/0]
+** 66fbc15969fe934048f79c94bd6f877a8edaec42
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end
-   --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.else %if.end
+   --     %entry %if.else %if.end
    --         [1]:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns 0
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/keyboard/sh_keysc.c sh_keysc_suspend [0/1]
-** TODO a57d5c150eeff47cba1c3bfe4a6bdb0bc4bb2ede
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end
-   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.else %if.end
+   --     %entry %if.end
+   --         returns 0
+   imprecise branch condition tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/keyboard/sh_keysc.c sh_keysc_suspend [0/0]
+** 66fbc15969fe934048f79c94bd6f877a8edaec42
+   -- Case 1 (existing summary):
+   --     %entry %if.else %if.end
    --         [1]:dpm -1
    --         `-- pm_runtime_put_sync [1]:dpm -1
    --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.end
+   --         returns 0
+   imprecise branch condition tracking

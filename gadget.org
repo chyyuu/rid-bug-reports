@@ -11,3 +11,25 @@
    --         +-- phy_exit [1].0:dpm -1
    --         `-- phy_power_off [1].0:dpm -1
    neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/dwc2/gadget.c s3c_hsotg_resume [0/0]
+** 3b8d903929ff546e677c40b88d08be53d6d3ef4d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %do.end8
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %do.end8
+   --         {%call}.2.0:dpm -1
+   --         `-- s3c_hsotg_phy_enable [1].2.0:dpm -1
+   --             `-- phy_init [1].0:dpm -1
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/dwc2/gadget.c s3c_hsotg_suspend [0/0]
+** 1c55d5252e3365eb88200ac6adc53aa51bdd73a9
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end7 %if.end19
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end7 %if.end19
+   --         {%call}.2.0:dpm -1
+   --         `-- s3c_hsotg_phy_disable [1].2.0:dpm -1
+   --             `-- phy_exit [1].0:dpm -1
+   --         returns 0

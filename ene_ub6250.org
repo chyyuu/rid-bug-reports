@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/storage/ene_ub6250.c ene_ub6250_probe [0/0]
+** ae25f133102c77b4ae9bc0d2980be7dab8fc92ef
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end9 %if.end13 %return
+   --         {%us}.2.14:dpm +1
+   --         `-- usb_stor_probe2 [1].2.14:dpm +1
+   --         returns [0]
+   imprecise summary tracking (leave for future)

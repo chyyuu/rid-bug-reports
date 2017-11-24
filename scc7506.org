@@ -1,12 +1,22 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/rtl8723au/os_dep/usb_intf.c rtw_drv_init [0/1]
-** TODO fe837e5d6931c32283265e79cf8da18ea78795ac
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/rtl8723au/os_dep/usb_intf.c rtw_disconnect [0/0]
+** 512a87eda14de07387e347c56915892c422604e7
    -- Case 1 (existing summary):
-   --     %entry %2 %do.body %if.end %do.end %if.then3 %do.body4 %if.end9 %do.end10 %exit
-   --         returns [0]
+   --     %entry %2 %return
+   --         -
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %if.end %do.end %if.end11 %if.end21 %if.then24 %free_if1 %land.lhs.true %if.then35 %if.end36 %free_dvobj %if.then38 %if.end39 %exit
-   --         {%call12}.4.23.14:dpm -1
+   --     %entry %2 %if.end %do.end %return
+   --         {%call}.0.4.23.14:dpm -1
    --         `-- rtw_usb_if1_deinit [1].4.23.14:dpm -1
    --             `-- usb_autopm_put_interface [1].14:dpm -1
-   --         returns [0]
+   imprecise summary tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/staging/rtl8723au/os_dep/usb_intf.c usb_dvobj_deinit [0/0]
+** ade1d5abb7a6c01f885b6a74f60300bb4f75587d
+   -- Case 1 (existing summary):
+   --     %entry %if.end23
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %do.end %if.end23
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   imprecise summary tracking (FIX!)

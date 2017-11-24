@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/touchscreen/cyttsp4_core.c cyttsp4_mt_close [0/1]
-** TODO 6689a5022800e41ec7cc05de430f2497592cad09
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/input/touchscreen/cyttsp4_core.c cyttsp4_mt_close [0/0]
+** 782456395511a87f5c0cffc54bfdf87cbe0a1444
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.end
+   --     %entry %if.then %if.end
    --         [1].39.0:dpm -1
    --         `-- pm_runtime_put [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %if.end
+   --         -
+   imprecise summary tracking

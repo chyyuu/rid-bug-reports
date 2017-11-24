@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/wireless/libertas/if_sdio.c if_sdio_finish_power_on [0/1]
-** TODO 4641ea0a26d0417c9a2ab1151359e928106e8c74
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/wireless/libertas/if_sdio.c if_sdio_finish_power_on [0/0]
+** 5a3348aa89db2bddd19133c656b36843faba502a
    -- Case 1 (existing summary):
-   --     %entry %2 %land.lhs.true %if.then %if.end %if.end10 %if.end13 %if.end30 %if.end42 %return
+   --     %entry %2 %return
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %land.lhs.true %if.then %if.end %if.end10 %if.end13 %if.end30 %if.then32 %if.then37 %if.end41 %if.end42 %return
+   --     %entry %2 %if.then37 %return
    --         [1].0.1:dpm -1
    --         `-- pm_runtime_put [1]:dpm -1
+   imprecise branch condition tracking

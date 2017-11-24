@@ -10,21 +10,33 @@
    --         `-- gma_power_begin [1].38.43:dpm +1
    --         returns [0]
    imprecise summary tracking
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_lvds.c psb_intel_lvds_set_backlight [0/1]
-** TODO a57d5c150eeff47cba1c3bfe4a6bdb0bc4bb2ede
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_lvds.c psb_intel_lvds_prepare [0/0]
+** 0ff21359198e74b0dc09da6abc02ca5823e15f9d
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %return
+   --         [1].0.38.43:dpm +1
+   --         `-- gma_power_begin [1].38.43:dpm +1
+   imprecise summary tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_lvds.c psb_intel_lvds_set_backlight [0/0]
+** a6da7548d65af14c4cf10fd9cff6151afc463dec
    -- Case 1 (existing summary):
    --     %entry %2 %if.then %if.end
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.else %if.end
+   --     %entry %2 %if.end
    --         [1].38.43:dpm +1
    --         `-- gma_power_begin [1].38.43:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_lvds.c psb_intel_lvds_set_power [0/1]
-** TODO bf0e571efdd8326f5498e782fa3079f524ecd4e6
+   imprecise summary tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/gpu/drm/gma500/psb_intel_lvds.c psb_intel_lvds_set_power [0/0]
+** 0f8d7b881cd2cd78a0406b4ab158bbe4e10e2f59
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
+   --     %entry %2 %if.end15 %return
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %return
    --         [1].38.43:dpm +1
    --         `-- gma_power_begin [1].38.43:dpm +1
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.then4 %do.body %do.cond %do.end %if.end15 %return
-   --         -
+   imprecise summary tracking
