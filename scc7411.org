@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/intel/e1000e/netdev.c e1000_remove [0/1]
-** TODO 0430f421770abf00d6f89c225f9b3055ac59f2c4
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/intel/e1000e/netdev.c e1000_remove [0/0]
+** cab03d238b60beff827b5266c7f2cf799cbd42b6
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end20 %if.end24 %if.end27 %if.end33
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end20 %if.end24 %if.then26 %if.end27 %if.end33
+   --     %entry %if.then26 %if.end33
    --         [1].43:dpm +1
    --         `-- pm_runtime_get_noresume [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %if.end33
+   --         -
+   imprecise branch condition tracking

@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/s5p-tv/sii9234_drv.c sii9234_probe [0/0]
+** db3e141660f564261cb2de5a15c7e3f639a8afff
+   -- Case 1 (existing summary):
+   --     %entry %if.end12 %if.end19 %if.end23 %fail_pm_get %fail_pm %fail %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end12 %if.end19 %fail_pm %fail %return
+   --         [1].dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   ineffective imbalance

@@ -1,21 +1,77 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_irq [0/1]
-** TODO 8140d098d546c91be9f36111ea1eab165abaf297
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_irq [0/0]
+** ffa3890c8b20245b3a306e00813c9c62161440df
    -- Case 1 (existing summary):
    --     %entry %2 %if.then %return
    --         [2].0.0:dpm +1
    --         `-- pm_runtime_get [1]:dpm +1
    --         returns 1
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end6 %if.else26 %if.end51 %if.end52 %return
+   --     %entry %2 %return
    --         returns 1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_sm_work [0/1]
-** TODO b2466a1d271f61e309e6b7a2e6b5d6c70668c4fe
+   imprecise branch condition
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_mode_write [0/0]
+** 3b0e460eabb84d8715323032886eb9bdef2832db
    -- Case 1 (existing summary):
-   --     %entry %2 %NodeBlock9 %NodeBlock %LeafBlock %sw.bb %do.body %do.body3 %if.end %do.end %do.end6 %sw.bb11 %do.body12 %do.body13 %if.end20 %do.end21 %do.end22 %cond.true %land.lhs.true %if.then29 %if.end72 %if.end79 %sw.epilog147
+   --     %entry %2 %cond.end %if.end19 %if.end20 %sw.epilog40 %out
+   --         [1].15.12.0.6.1.0:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [3]
+   -- Case 2 (new summary):
+   --     %entry %2 %cond.end %if.end19 %if.end20 %out
+   --         returns [3]
+   imprecise branch condition
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_resume [0/0]
+** 0874df21d2bc5266c1f57fbbcbbcaa5548387717
+   -- Case 1 (existing summary):
+   --     %entry %2 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then11 %if.end16 %if.then65 %return
+   --         [1].0.0:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns 0
+   imprecise branch condition
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_set_host [0/0]
+** c74768bdf444c07e73d31a99dd134507954bb584
+   -- Case 1 (existing summary):
+   --     %entry %if.then7 %return
+   --         [1].1.0:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         returns 0
+   imprecise branch condition
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_set_peripheral [0/1]
+** TODO c74768bdf444c07e73d31a99dd134507954bb584
+   -- Case 1 (existing summary):
+   --     %entry %if.then7 %return
+   --         [1].1.0:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         returns 0
+   imprecise branch condition
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/phy/phy-msm-usb.c msm_otg_sm_work [0/0]
+** 72f6b4801adf0637140d5481b2a078db9c326294
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then75 %sw.epilog147
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %NodeBlock9 %NodeBlock %LeafBlock %sw.bb %do.body %do.body3 %if.end %do.end %do.end6 %sw.bb11 %do.body12 %do.body13 %if.end20 %do.end21 %do.end22 %cond.true %if.else %cond.true37 %if.then45 %NodeBlock16 %LeafBlock12 %sw.bb46 %sw.epilog58 %if.end71 %if.end72 %if.end79 %sw.epilog147
+   --     %entry %2 %sw.bb46 %if.then75 %sw.epilog147
    --         [1].-9.14.0.0:dpm +1
    --         `-- msm_chg_detect_work [1].0:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
+   imprecise branch condition
+** fad5a7ce7e2f7e6d2df0e4deda826af323803bb9
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then75 %sw.epilog147
+   --         [1].-9.0.6.1.0:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then62 %if.then75 %sw.epilog147
+   --         [1].-9.0.6.1.0:dpm -2
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   imprecise branch condition

@@ -1,42 +1,50 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_clock_event_mode [0/1]
-** TODO 3e8cace9e6fc387724bf10b1ee6d92f8706dfb57
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_clock_event_mode [0/0]
+** 021a9b975126733d719e26ae7a9e4f8bc910f573
    -- Case 1 (existing summary):
-   --     %entry %2 %LeafBlock %sw.bb %sw.epilog %NodeBlock8 %NodeBlock6 %LeafBlock4 %sw.bb4 %sw.epilog13
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %LeafBlock %sw.bb %sw.epilog %NodeBlock8 %NodeBlock6 %LeafBlock4 %sw.bb4 %sw.epilog13
+   --     %entry %2 %sw.bb %sw.epilog %sw.bb4 %sw.epilog13
    --         0.-7.0.0.3:dpm +1
    --         `-- sh_tmu_clock_event_start [1].0.0.3:dpm +1
    --             `-- sh_tmu_enable [1].0.0.3:dpm +1
    --                 `-- pm_runtime_get_sync [1]:dpm +1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_clocksource_enable [0/1]
-** TODO 4b064195413719359c6b640b6be12feffa12cf2c
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end %if.then4 %return
-   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end5 %if.then8 %if.end10 %return
-   --         [1].-8.0.0.3:dpm +1
-   --         `-- sh_tmu_enable [1].0.0.3:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns 0
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_disable [0/1]
-** TODO 29847d260fa68015ec96df9ad3f94cf514016c15
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end %if.then3 %return
+   --     %entry %2 %sw.bb %sw.epilog %sw.bb4 %sw.epilog13
    --         -
+** 2bd30883ef2fd826364a7faabda27aa04e112e02
+   -- Case 1 (existing summary):
+   --     %entry %2 %sw.bb %sw.epilog %sw.bb4 %sw.epilog13
+   --         [2].-7.0.0.3:dpm -1
+   --         `-- sh_tmu_disable [1].0.0.3:dpm -1
+   --             `-- pm_runtime_put [1]:dpm -1
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end4 %if.end8 %return
+   --     %entry %2 %sw.epilog %sw.bb4 %sw.epilog13
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_clocksource_disable [0/0]
+** 1ab7c1eee1b85babae7c4b0c15862c0147e1da29
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end6 %return
+   --         [1].-8.0.0.3:dpm -1
+   --         `-- sh_tmu_disable [1].0.0.3:dpm -1
+   --             `-- pm_runtime_put [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %2 %return
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_disable [0/0]
+** 25a81b150e7e30f7fa1e8364b644467b5549fc64
+   -- Case 1 (existing summary):
+   --     %entry %if.end8 %return
    --         [1].0.0.3:dpm -1
    --         `-- pm_runtime_put [1]:dpm -1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_probe [0/1]
-** TODO 2b637e431c4054738b3ffb053443c176254ec5d3
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         -
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_tmu.c sh_tmu_probe [0/0]
+** 8af4f32e1e0d21f7346b5a47e90b2033f52a7cf9
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end8 %if.end11 %if.end17 %if.then20 %return
+   --     %entry %2 %if.end8 %if.end11 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end8 %if.end11 %if.end17 %if.end21 %out %if.then24 %if.end28 %return
+   --     %entry %2 %out %if.then24 %return
    --         [1].3.0:dpm +1
    --         `-- pm_runtime_irq_safe [1].0:dpm +1
    --         returns 0

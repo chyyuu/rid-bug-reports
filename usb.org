@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/storage/usb.c quiesce_and_remove_host [0/1]
-** TODO 88e3c8a3718a353e7c0fd600a0db3c4023e213fe
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/uwb/i1480/dfu/usb.c i1480_usb_probe [0/0]
+** 91f5ebb801cdda65b67ef5a45313cc8318ef2369
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %cond.true %if.end8
-   --         -
+   --     %entry %if.end25 %if.end40 %if.end48 %if.then55 %if.end57 %error_create %error_buf_alloc %error
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   --         returns -19
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %cond.true %if.then7 %if.end8
-   --         [1].2.14:dpm -1
-   --         `-- usb_autopm_put_interface_no_suspend [1].14:dpm -1
+   --     %entry %if.end25 %if.end40 %if.end48 %if.then55 %if.end57 %error_create %error_buf_alloc %error
+   --         returns -19

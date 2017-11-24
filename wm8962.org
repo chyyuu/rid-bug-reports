@@ -1,23 +1,23 @@
 #+TODO: TODO CHECK | BUG DUP
 * /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/wm8962.c wm8962_irq [1/1]
-** BUG 4a6da8d1d5f92997519eb405f308d47aacf0330d
+** BUG 4f511fcb6aed3ca917ca8090720695026f3e4daf
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
+   --     %entry %2 %if.then5 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %return
    --         [2]:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.then5 %return
-   --         returns 0
    @
 * /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/wm8962.c wm8962_set_fll [1/1]
-** BUG 95ad5e58a64f3019454a9ffd794a35c3c5909c27
+** BUG a55148df0c2374054c4e720dc943b7fe3000ca5c
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end16 %if.then19 %return
-   --         returns [0]
+   --     %entry %do.end10 %return
+   --         [1].0:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end16 %if.end20 %NodeBlock %LeafBlock %sw.bb %sw.epilog %lor.lhs.false %if.end32 %if.then53 %return
-   --         [1].0:dpm +1
-   --         `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
+   --     %entry %return
+   --         returns 0
    @

@@ -1,11 +1,24 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci-pci.c sdhci_pci_remove [0/1]
-** TODO dee48c31ebaad8b0390830ae068d7dba66de9ef1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci-pci.c sdhci_pci_probe [0/0]
+** 25e6898d0fbfd711987e5ead13a7d63875c06513
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end3
+   --     %entry %do.end18 %do.end57 %if.end71 %if.end75 %for.cond %for.body %for.inc126 %for.cond %if.then130 %return
+   --         [1].43:dpm -1
+   --         `-- sdhci_pci_runtime_pm_allow [1]:dpm -1
+   --             `-- pm_runtime_put_noidle [1]:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %do.end18 %do.end57 %if.end71 %if.end75 %for.cond %for.body %for.inc126 %for.cond %return
+   --         returns 0
+   imprecise branch condition tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci-pci.c sdhci_pci_remove [0/0]
+** 8e90424ba1ef532a945de2d7c816ce0ff9b6efbf
+   -- Case 1 (existing summary):
+   --     %entry %if.end3
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.then2 %if.end %for.cond %for.end %if.end3
+   --     %entry %if.then2 %for.cond %for.inc %for.cond %if.end3
    --         [1].43:dpm +1
    --         `-- sdhci_pci_runtime_pm_forbid [1]:dpm +1
    --             `-- pm_runtime_get_noresume [1]:dpm +1
+   imprecise branch condition tracking (FIX!)

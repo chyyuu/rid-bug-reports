@@ -3,8 +3,8 @@
 ** 0ff21359198e74b0dc09da6abc02ca5823e15f9d
    -- Case 1 (existing summary):
    --     %entry %2 %if.end %return
-   --         [1].27.2.1.8.15.3.14.9.0:dpm +1
-   --         `-- usb_reset_device [1].8.15.3.14.9.0:dpm +1
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
    --         returns 0
    -- Case 2 (new summary):
    --     %entry %2 %return

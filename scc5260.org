@@ -6,7 +6,19 @@
    --         returns [0]
    -- Case 2 (new summary):
    --     %entry %if.end %if.end11 %fail_fh_open %unlock %return
-   --         [video_device].2.9.mdev.dev:dpm +1
+   --         {%call}.mdev.dev:dpm +1
    --         `-- mxr_power_get [1].dev:dpm +1
    --             `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/s5p-tv/mixer_video.c mxr_video_release [0/0]
+** 782456395511a87f5c0cffc54bfdf87cbe0a1444
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.end
+   --         {%call}.mdev.dev:dpm -1
+   --         `-- mxr_power_put [1].dev:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %if.end
+   --         returns 0
+   imprecise branch condition tracking

@@ -1,11 +1,43 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/base/regmap/regmap-irq.c regmap_irq_thread [0/1]
-** TODO 6f5683f48e1ecae2b300bf9e49447d0e84b335c3
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/base/regmap/regmap-irq.c regmap_irq_sync_unlock [0/0]
+** 61369cd4f8d82be3b81193eb1df58345058742cb
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.body %if.then13 %if.end26 %if.end32 %for.inc %for.cond %if.then104 %if.then109 %for.cond111 %for.inc115 %for.cond111 %if.end132
+   --         {%call}.2.6:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %for.cond %for.body %if.then13 %if.end26 %if.end32 %for.inc %for.cond %if.then104 %if.then109 %for.cond111 %for.inc115 %for.cond111 %if.end132
+   --         -
+   imprecise branch condition tracking (FIX!)
+** b208f078088bd552f309b03616475c501efb723e
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.body %if.then13 %if.end26 %if.end32 %for.inc %for.cond %if.then104 %if.then109 %for.cond111 %for.inc115 %for.cond111 %if.end132
+   --         {%call}.2.6:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %for.cond %for.body %if.then13 %if.end26 %if.end32 %for.inc %for.cond %if.then109 %for.cond111 %for.inc115 %for.cond111 %if.end132
+   --         {%call}.2.6:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   imprecise branch condition tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/base/regmap/regmap-irq.c regmap_irq_thread [1/1]
+** BUG 6626b5bc48f9c92567d1ce50279fb50cb7827302
    -- Case 1 (existing summary):
    --     %entry %2 %if.then %if.then3 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.end %if.end8 %land.lhs.true %land.lhs.true11 %if.then13 %do.body %if.end23 %do.end25 %if.then30 %return
+   --     %entry %2 %if.then %return
    --         [2].2.6:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns 0
+** 7bbcc1f05e2e04bae148560d463398c4e9fc98f0
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %for.inc %for.cond %for.cond90 %for.inc127 %for.cond90 %for.cond130 %if.end148 %for.inc149 %for.cond130 %if.then154 %return
+   --         [2].2.6:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns 1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then %for.cond %for.inc %for.cond %for.cond90 %for.inc127 %for.cond90 %for.cond130 %if.end148 %for.inc149 %for.cond130 %return
+   --         [2].2.6:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 1
+   imprecise branch condition tracking (FIX!)

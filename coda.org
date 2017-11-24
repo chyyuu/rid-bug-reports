@@ -1,11 +1,12 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/coda.c coda_fw_callback [1/1]
-** BUG aa26e88ebb2fabd41dfe7ccf28c422401c524f40
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/coda.c coda_open [1/1]
+** BUG 4f34447d96f6029cfc85158b53f75ca8f7a51873
    -- Case 1 (existing summary):
-   --     %entry %if.then %return
-   --         -
+   --     %entry %if.end %sw.epilog %if.end37 %if.end41 %if.end59 %if.end67 %err_dma_alloc %err_ctrls_setup %err_ctx_init %err_clk_ahb %err_clk_per %err_pm_get %err_coda_max %return
+   --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %if.end5 %land.lhs.true %if.then12 %if.then17 %return
-   --         [2].plat_dev.dev:dpm +1
+   --     %entry %if.end %sw.epilog %err_pm_get %err_coda_max %return
+   --         {%call}.plat_dev.dev:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
    @

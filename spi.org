@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/spi/spi.c spi_pump_messages [0/1]
-** TODO df4a8d5926ba614fb4eedf9c499231b8f20f1196
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/spi/spi.c spi_pump_messages [0/0]
+** 5a940d16aaff05708556cf1d1c32a058c5934592
    -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %do.end %do.end4 %if.then %if.then8 %if.end109
+   --     %entry %2 %if.end109
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %do.end %do.end4 %if.then %if.end %if.end20 %if.then22 %if.end27 %if.end109
+   --     %entry %2 %if.then22 %if.end109
    --         [1].-20.0.0:dpm -1
    --         `-- pm_runtime_put_autosuspend [1]:dpm -1
+   imprecise branch condition tracking

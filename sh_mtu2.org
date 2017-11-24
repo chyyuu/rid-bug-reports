@@ -1,21 +1,12 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_mtu2.c sh_mtu2_clock_event_mode [0/1]
-** TODO ea7bb0cb6ca314f6c675aaff225c1bfbe045df85
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_mtu2.c sh_mtu2_probe [0/0]
+** 9eebccab64b1929e48354d26e9974b6223b0b89d
    -- Case 1 (existing summary):
-   --     %entry %2 %LeafBlock %sw.bb %sw.epilog %NodeBlock6 %NodeBlock %LeafBlock4 %sw.bb2 %sw.epilog8
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %LeafBlock %sw.bb %sw.epilog %NodeBlock6 %NodeBlock %LeafBlock4 %sw.bb2 %sw.epilog8
-   --         [2].-4.0.0.3:dpm -1
-   --         `-- sh_mtu2_disable [1].0.0.3:dpm -1
-   --             `-- pm_runtime_put [1]:dpm -1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/clocksource/sh_mtu2.c sh_mtu2_probe [0/1]
-** TODO 5d64541a79de759d37c2d6a6825bb4ddc55726b5
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end8 %if.end11 %if.end17 %if.then20 %return
+   --     %entry %2 %if.end8 %if.end11 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end8 %if.end11 %if.end17 %if.end21 %out %if.then23 %if.end27 %return
+   --     %entry %2 %out %if.then23 %return
    --         [1].3.0:dpm +1
    --         `-- pm_runtime_irq_safe [1].0:dpm +1
    --         returns 0
+   imprecise branch condition tracking (FIX!)

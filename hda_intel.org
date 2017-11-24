@@ -1,40 +1,33 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_intel.c azx_create [0/1]
-** TODO f9f763b5ba079e7de55129ec4d269a8daa5bba06
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_intel.c azx_free [0/0]
+** 35e5fb517103c34d50d4bc450d4db581c6f548c8
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
-   --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end5 %do.body %do.body8 %do.end %do.end10 %do.body11 %do.end12 %do.body16 %do.body17 %do.end23 %do.end24 %if.end39 %if.then43 %return
-   --         {%call1}.0.1.43:dpm +1
-   --         `-- azx_free [1].1.43:dpm +1
-   --             `-- pm_runtime_get_noresume [1]:dpm +1
-   --         returns [0]
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_intel.c azx_free [0/1]
-** TODO 008090e43e3a04bcde700e8d12b9758a25f8d51f
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end16 %if.end19 %if.end23 %if.end27 %if.end31 %if.end35 %if.end41 %if.end48
+   --     %entry %2 %if.end48
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %land.lhs.true %if.then %if.end %if.end16 %if.end19 %if.end23 %if.end27 %if.end31 %if.end35 %if.end41 %if.end48
+   --     %entry %2 %if.then %if.end48
    --         [1].1.43:dpm +1
    --         `-- pm_runtime_get_noresume [1]:dpm +1
    --         returns 0
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_intel.c azx_vs_set_state [0/2]
-** TODO 2a6ece4afc9abd41218ed9bbc836d40e2293fbb2
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_intel.c azx_probe_continue [0/0]
+** 0cf4673df06041c950beda6bce9d3d9473579895
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end55
+   --     %entry %2 %if.then %out_free %if.end78
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end14 %if.end18 %if.end50 %if.end56 %if.end61 %if.then72 %out_free %if.end78
+   --         [1].1.43:dpm -1
+   --         `-- pm_runtime_put_noidle [1]:dpm -1
+   --         returns [0]
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_intel.c azx_vs_set_state [0/0]
+** d711543df7d8fe0a6745ce93dea230507ea610c7
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end55
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end8 %if.then10 %if.then15 %if.end26 %if.end27 %if.end55
-   --         {%call}.8.1.43:dpm -1
-   --         `-- azx_probe_continue [1].1.43:dpm -1
-   --             `-- pm_runtime_put_noidle [1]:dpm -1
-** TODO 284317aaffc7861827809fa3bf8c9ab75bb277e2
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end55
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end8 %if.else %if.then34 %if.end47 %if.end54 %if.end55
-   --         {%call}.27:dpm -1
-   --         `-- pm_runtime_put_sync_suspend [1]:dpm -1
+   --     %entry %2 %if.else48 %if.end55
+   --         {%call}.27:dpm +1
+   --         `-- pm_runtime_get_noresume [1]:dpm +1
+   imprecise branch condition tracking

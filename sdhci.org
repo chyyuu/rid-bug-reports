@@ -1,19 +1,43 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_runtime_pm_bus_off [0/1]
-** TODO 38828e817af2602c90c851f9456de98ae58977b6
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_reset [0/1]
+** TODO 7ce1aa5eb5006fbfbaf0716e27c97cce9646083f
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
+   --     %entry %while.cond %if.end14 %while.cond %while.end
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %lor.lhs.false %if.end %return
+   --     %entry %if.then3 %while.cond %if.end14 %while.cond %while.end
+   --         [1].6.0:dpm -1
+   --         `-- sdhci_runtime_pm_bus_off [1].6.0:dpm -1
+   --             `-- pm_runtime_put_noidle [1]:dpm -1
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_runtime_pm_bus_off [0/0]
+** 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
+   --     %entry %if.end %return
    --         [1].6.0:dpm -1
    --         `-- pm_runtime_put_noidle [1]:dpm -1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_runtime_pm_bus_on [0/1]
-** TODO 38828e817af2602c90c851f9456de98ae58977b6
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
-   --         -
    -- Case 2 (new summary):
-   --     %entry %2 %lor.lhs.false %if.end %return
+   --     %entry %return
+   --         -
+   imprecise branch condition tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_runtime_pm_bus_on [0/0]
+** 48bb0349f75fccfa917bdb8176ec12f3b8ddc97a
+   -- Case 1 (existing summary):
+   --     %entry %if.end %return
    --         [1].6.0:dpm +1
    --         `-- pm_runtime_get_noresume [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         -
+   imprecise branch condition tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/mmc/host/sdhci.c sdhci_set_power [0/0]
+** 414abae65fa137485dd379763b7b05f07ffbbdeb
+   -- Case 1 (existing summary):
+   --     %entry %if.end51
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %sw.epilog %if.end14 %if.then27 %if.end51
+   --         [1].6.0:dpm -1
+   --         `-- sdhci_runtime_pm_bus_off [1].6.0:dpm -1
+   --             `-- pm_runtime_put_noidle [1]:dpm -1
+   imprecise branch condition tracking

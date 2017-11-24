@@ -1,13 +1,21 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/soc-dapm.c snd_soc_dapm_sync_unlocked [0/1]
-** TODO 38828e817af2602c90c851f9456de98ae58977b6
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/soc-dapm.c dapm_post_sequence_async [0/0]
+** 43f1c92c1e375f13f519655a2ff05eb8e5588143
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
-   --         returns 0
+   --     %entry %2 %if.end38
+   --         -
    -- Case 2 (new summary):
-   --     %entry %2 %lor.lhs.false %if.end %return
-   --         [1].8.42.5:dpm +1
-   --         `-- dapm_power_widgets [1].42.5:dpm +1
-   --             `-- dapm_pre_sequence_async [1].5:dpm +1
-   --                 `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns 0
+   --     %entry %2 %if.then21 %if.end38
+   --         [1].5:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   imprecise branch condition tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/soc-dapm.c dapm_pre_sequence_async [0/0]
+** 922dd4e6950e6b9de2e8a0dc6a58460b71fb1586
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end28
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then2 %if.end28
+   --         [1].5:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   imprecise branch condition tracking

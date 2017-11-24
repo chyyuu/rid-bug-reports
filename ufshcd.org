@@ -1,0 +1,11 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/scsi/ufs/ufshcd.c ufshcd_async_scan [0/0]
+** b17e6ece741abb9b5356c947a555663b46dc3f35
+   -- Case 1 (existing summary):
+   --     %entry %2 %out
+   --         -
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then11 %out
+   --         [1].8:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+   imprecise branch tracking

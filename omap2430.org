@@ -17,7 +17,7 @@
 ** 476bcb3277640d47458fc04673188e11fe7ce203
    -- Case 1 (existing summary):
    --     %entry %if.then10 %sw.epilog
-   --         [1].musb.3.9.controller:dpm +1
+   --         {%call}.controller:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    -- Case 2 (new summary):
    --     %entry %sw.epilog

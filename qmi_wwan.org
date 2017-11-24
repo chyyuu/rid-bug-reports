@@ -1,11 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/qmi_wwan.c qmi_wwan_bind [0/1]
-** TODO 4ae64225f160de33623b0cb6aec86b9a82e3a2f1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/qmi_wwan.c qmi_wwan_suspend [0/0]
+** c523777577ce9ebf56b70a059e3f67568dbc7a40
    -- Case 1 (existing summary):
-   --     %entry %2 %while.cond %if.then143 %err
+   --     %entry %2 %err
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %2 %while.cond %if.then143 %if.end150 %if.then158 %err
-   --         [1].21.4.14:dpm -1
-   --         `-- usb_driver_release_interface [2].14:dpm -1
+   --     %entry %2 %if.then7 %if.end12 %if.then14 %err
+   --         [1].14:dpm +1
+   --         `-- usbnet_resume [1].14:dpm +1
    --         returns [0]

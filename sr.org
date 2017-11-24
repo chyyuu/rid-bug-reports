@@ -6,7 +6,7 @@
    --         returns 0
    -- Case 2 (new summary):
    --     %entry %2
-   --         [1].9.2.91:dpm +1
+   --         {%call}.2.91:dpm +1
    --         `-- scsi_autopm_get_device [1].91:dpm +1
    --         returns 0
    neglect possible error

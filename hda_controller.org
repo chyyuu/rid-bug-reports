@@ -1,10 +1,19 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_controller.c azx_power_notify [0/1]
-** TODO d2d42263e327c030b6da2d29989f8281026de92e
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/pci/hda/hda_controller.c azx_power_notify [0/2]
+** TODO a9ceb03aba40e81be8c89a1eac931edfe4846d72
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %if.end6
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.then2 %if.end6
+   --     %entry %2 %if.then2 %if.end6
    --         [1].1.0.27:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.else %if.end6
+   --         [1].1.0.27:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
+** TODO f07e653319ca3e4cfd5849771b61c2603b0961a5
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then2 %if.end6
+   --         [1].1.0.27:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end6
+   --         -

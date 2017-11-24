@@ -1,30 +1,45 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_device_suggests_idle [0/1]
-** TODO 6689a5022800e41ec7cc05de430f2497592cad09
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_device_suggests_idle [0/0]
+** 782456395511a87f5c0cffc54bfdf87cbe0a1444
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end
-   --         -
-   -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.end
+   --     %entry %if.then %if.end
    --         [1].1.14:dpm -1
    --         `-- usb_autopm_put_interface_async [1].14:dpm -1
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_resume [0/1]
-** TODO 0ccdc1dfcd4e7ad7f1b9a66eeb4610639c978fe2
-   -- Case 1 (existing summary):
-   --     %entry %2 %if.end41 %if.end46
-   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end41 %if.then45 %if.end46
+   --     %entry %if.end
+   --         -
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_open [0/0]
+** 96863f9f7b6c724de80279c9a9381b99626f97c3
+   -- Case 1 (existing summary):
+   --     %entry %2 %land.lhs.true %if.end29 %if.end51 %if.end67 %cond.false97 %cond.end %cond.end103 %cond.end105 %cond.end107 %if.then114 %if.else %if.end122 %if.end123 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %land.lhs.true %if.end29 %if.end51 %if.end67 %cond.false97 %cond.end %cond.end103 %cond.end105 %cond.end107 %if.end123 %return
+   --         {%call}.1.14:dpm +1
+   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --         returns [0]
+   imprecise branch condition tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_resume [0/0]
+** c24ff9e030b82a86cc2bb20158e8a95669509c0c
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then45 %if.end46
    --         [1].14:dpm +1
    --         `-- usb_autopm_get_interface_no_resume [1].14:dpm +1
    --         returns 0
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_stop [0/1]
-** TODO 6a244dc212d4fc11ef187ecd1424acd067b134bc
-   -- Case 1 (existing summary):
-   --     %entry %2 %do.body %if.end %do.end %if.end24 %if.end29 %if.end35 %land.lhs.true %if.then40 %if.end44
-   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %if.end %do.end %if.end24 %if.end29 %if.end35 %land.lhs.true %if.else %if.end44
-   --         [1].1.14:dpm -1
+   --     %entry %2 %if.end46
+   --         returns 0
+   imprecise branch condition tracking (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/usb/usbnet.c usbnet_stop [0/0]
+** 2325b54b901170f40574664464a05d3788754867
+   -- Case 1 (existing summary):
+   --     %entry %2 %do.end %if.then33 %if.else %if.end44
+   --         {%call}.1.14:dpm -1
+   --         +-- usb_autopm_get_interface [1].14:dpm +1
    --         `-- usb_autopm_put_interface [1].14:dpm -1
    --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %do.end %if.then33 %if.end44
+   --         returns 0
+   imprecise branch condition tracking (bitmap)

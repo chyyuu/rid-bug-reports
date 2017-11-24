@@ -1,0 +1,10 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/caiaq/device.c snd_disconnect [0/0]
+** 9341f3a6dd742066f6bb8a44c526b0d36d19128a
+   -- Case 1 (existing summary):
+   --     %entry %do.end6 %return
+   --         {%call15}.0:dpm +1
+   --         `-- usb_reset_device {%call15}.0:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         -

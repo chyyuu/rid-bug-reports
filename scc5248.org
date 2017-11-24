@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-capture.c fimc_capture_open [1/1]
+** BUG 300a8a4f7d9f8a267d4ced82a83c33be67878346
+   -- Case 1 (existing summary):
+   --     %entry %if.end9 %if.end13 %if.then16 %unlock
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end9 %if.end13 %cond.true29 %cond.end %cond.end36 %if.end50 %if.then57 %if.end59 %if.end68 %unlock
+   --         {%call}.pdev.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

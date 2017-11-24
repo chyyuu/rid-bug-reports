@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/i2c/busses/i2c-omap.c omap_i2c_probe [1/1]
+** BUG a9a5a527809a583119c5fc1b656ea04eeedfe74e
+   -- Case 1 (existing summary):
+   --     %entry %if.end %do.end39 %if.end48 %sw.bb %sw.epilog %if.then135 %if.end144 %err_unuse_clocks %err_free_mem %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end %do.end39 %err_free_mem %return
+   --         {%call7}.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   @

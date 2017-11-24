@@ -1,38 +1,68 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/usx2y/us122l.c usb_stream_hwdep_open [0/4]
-** TODO d0483a047dce83e4b165cde77fb95441bb0cf705
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/usx2y/us122l.c us122l_create_card [0/0]
+** 2b3c5e0be4f732afe1564d45221d9c878f64d67e
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --     %entry %2 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
-   --         0.14:dpm +1
-   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --     %entry %2 %if.then34 %if.end37 %if.then45 %for.cond %return
+   --         {%call}.2.14:dpm +1
+   --         `-- us144_create_usbmidi {%call}.2.14:dpm +1
+   --             `-- snd_usbmidi_create {%call}.2.14:dpm +1
    --         returns 0
-** TODO d0483a047dce83e4b165cde77fb95441bb0cf705
+   imprecise summary tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/usx2y/us122l.c us122l_usb_probe [0/0]
+** c45c36e7c97796740229b102a3ac6bf8f61f4ee4
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --     %entry %2 %if.end %return
+   --         returns -22
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %return
+   --         {%call}.2.14:dpm +1
+   --         `-- us122l_create_card {%call}.2.14:dpm +1
+   --             `-- us122l_create_usbmidi {%call}.2.14:dpm +1
+   --                 `-- snd_usbmidi_create {%call}.2.14:dpm +1
+   --         returns -22
+   imprecise summary tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/usx2y/us122l.c usb_stream_hwdep_open [0/0]
+** b4a52675dc519a181cf601a68d7d2d6ac2fd75d6
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then12 %if.end15 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --     %entry %2 %if.then12 %if.end15 %return
    --         [1].10.0.15.3.14:dpm +1
    --         `-- usb_autopm_get_interface [1].14:dpm +1
    --         returns 0
-** TODO d0483a047dce83e4b165cde77fb95441bb0cf705
+   imprecise branch condition tracking
+** b4a52675dc519a181cf601a68d7d2d6ac2fd75d6
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --     %entry %2 %if.then12 %if.end15 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
-   --         {%call17}.14:dpm +1
+   --     %entry %2 %if.then12 %if.end15 %return
+   --         0.14:dpm +1
    --         `-- usb_autopm_get_interface [1].14:dpm +1
    --         returns 0
-** TODO 7212a7f763f91828ec52396f94b04f86ac29b349
+   imprecise branch condition tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/usb/usx2y/us122l.c usb_stream_hwdep_release [0/0]
+** d43b92e89e36eb2d45c3ff6292d0c58657787426
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end3 %lor.lhs.false %if.end15 %return
+   --     %entry %2 %if.then %if.end %if.end20
+   --         0.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end3 %if.then12 %if.end15 %return
-   --         {%call}.14:dpm +1
-   --         `-- usb_autopm_get_interface [1].14:dpm +1
+   --     %entry %2 %if.end %if.end20
    --         returns 0
+   imprecise branch condition tracking
+** d43b92e89e36eb2d45c3ff6292d0c58657787426
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then %if.end %if.end20
+   --         [1].10.0.15.3.14:dpm -1
+   --         `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end20
+   --         returns 0
+   imprecise branch condition tracking

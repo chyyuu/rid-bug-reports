@@ -1,12 +1,50 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/nfc/trf7970a.c trf7970a_switch_rf [0/1]
-** TODO 51fa682edd1ba5e6b9a1e9176c8ce7c7ad85df2e
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/nfc/trf7970a.c trf7970a_in_configure_hw [0/0]
+** 524362b57f886eafde9152b8ad1c635f17ecb2bf
    -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end4 %if.then6 %NodeBlock %LeafBlock1 %sw.bb8 %sw.epilog %if.end24
+   --     %entry %2 %if.then4 %sw.bb %sw.epilog
+   --         {%call}.1:dpm +1
+   --         `-- trf7970a_switch_rf_on [1].1:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %sw.bb %sw.epilog
+   --         returns [0]
+   imprecise summary tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/nfc/trf7970a.c trf7970a_remove [0/0]
+** 813286946b053de95f312d239bef776fc00782ec
+   -- Case 1 (existing summary):
+   --     %entry %2 %sw.bb1 %sw.epilog
+   --         {%call}.1:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %if.end %do.end %do.end4 %if.then6 %NodeBlock %LeafBlock1 %NewDefault %sw.default %sw.epilog %if.end24
-   --         [1].6.1:dpm -1
+   --     %entry %2 %sw.epilog
+   --         returns 0
+   imprecise summary tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/nfc/trf7970a.c trf7970a_switch_rf [0/0]
+** 7bdc4a9f9e770c1c880f411326f88bd4e4b4b812
+   -- Case 1 (existing summary):
+   --     %entry %2 %sw.bb %if.end24
+   --         {%call}.1:dpm +1
+   --         `-- trf7970a_switch_rf_on [1].1:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %sw.default %if.end24
+   --         {%call}.1:dpm -1
    --         `-- trf7970a_switch_rf_off [1].1:dpm -1
    --             `-- pm_runtime_put_autosuspend [1]:dpm -1
    --         returns 0
+   imprecise summary tracking (FIX!)
+** 69f19d0f69e76944de94938b3d266cfac3c29982
+   -- Case 1 (existing summary):
+   --     %entry %2 %sw.bb %if.end24
+   --         {%call}.1:dpm +1
+   --         `-- trf7970a_switch_rf_on [1].1:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end24
+   --         returns 0
+   imprecise summary tracking (FIX!)

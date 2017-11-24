@@ -1,10 +1,23 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/misc/usbsevseg.c update_display_powered [0/1]
-** TODO ee52920645eae97431b9f014c8182d7f8aea78c1
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/misc/usbsevseg.c set_attr_powered [0/0]
+** be4e4dd32ae2ee9733543a5f49eb910e4d740c18
    -- Case 1 (existing summary):
-   --     %entry %2 %land.lhs.true %if.then %if.then3 %if.end38
+   --     %entry %2
+   --         {%call2}.1.14:dpm -1
+   --         `-- update_display_powered [1].1.14:dpm -1
+   --             `-- usb_autopm_put_interface [1].14:dpm -1
+   --         returns [4]
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         returns [4]
+   imprecise branch condition tracking (complex)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/usb/misc/usbsevseg.c update_display_powered [0/0]
+** 27d47cb779e43633e54b2a5ffab87fa8a7576fbd
+   -- Case 1 (existing summary):
+   --     %entry %if.then %if.end38
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %land.lhs.true %if.then %if.end %if.end5 %if.then9 %if.end38
+   --     %entry %if.then %if.end38
    --         [1].1.14:dpm +1
    --         `-- usb_autopm_get_interface [1].14:dpm +1
+   imprecise branch condition tracking (complex)

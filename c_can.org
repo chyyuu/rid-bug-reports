@@ -1,15 +1,52 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/can/c_can/c_can.c c_can_power_down [0/1]
-** TODO e066c4595cdebfa73e49d61a756fd9a10e230e38
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/can/c_can/c_can.c c_can_close [0/0]
+** be4e4dd32ae2ee9733543a5f49eb910e4d740c18
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
-   --         returns 0
-   -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end4 %while.cond %land.end32 %while.end %land.lhs.true41 %land.lhs.true50 %if.end55 %return
-   --         [1].3:dpm -1
+   --     %entry %2
+   --         {%call}.3:dpm -1
    --         `-- c_can_pm_runtime_put_sync [1].3:dpm -1
    --             `-- pm_runtime_put_sync [1]:dpm -1
    --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2
+   --         returns 0
+   imprecise summary tracking (leave for future)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/can/c_can/c_can.c c_can_open [0/0]
+** dc9f754cdb549d81a7535a7ee5fb624f6145b521
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end %if.end6 %return
+   --         {%call}.3:dpm +1
+   --         `-- c_can_pm_runtime_get_sync [1].3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end %if.end6 %return
+   --         returns 0
+   imprecise summary tracking (leave for future)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/can/c_can/c_can.c c_can_power_down [0/0]
+** ddb4eb244d964d20df13d4578bada67fdc55ee87
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end4 %land.rhs29 %land.end %land.end32 %if.end55 %return
+   --         {%call}.3:dpm -1
+   --         `-- c_can_pm_runtime_put_sync [1].3:dpm -1
+   --             `-- pm_runtime_put_sync [1]:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end4 %land.rhs29 %land.end %land.end32 %if.end55 %return
+   --         returns 0
+   imprecise summary tracking (leave for future)
 
 analysis
 SO, has err.
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/can/c_can/c_can.c c_can_power_up [0/0]
+** 7893ea169a02667308b5d5f8b966a402b9ed8228
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end4 %land.rhs38 %land.end %land.end41 %return
+   --         {%call}.3:dpm +1
+   --         `-- c_can_pm_runtime_get_sync [1].3:dpm +1
+   --             `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns -110
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end4 %land.rhs38 %land.end %land.end41 %return
+   --         returns -110
+   imprecise summary tracking (leave for future)

@@ -1,10 +1,72 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_put_resources [0/1]
-** TODO 63859e0dfb45a1ec0b4d776f947f9e4ef0bbb895
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_disable_phys [1/1]
+** BUG 021b04a0f8ddc7ec09e8f720f241595dcd43c0da
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %for.end
+   --     %entry %for.cond %if.end %for.inc %for.cond %for.end
+   --         [1].16.0:dpm -1
+   --         `-- phy_exit [1].0:dpm -1
+   -- Case 2 (new summary):
+   --     %entry %for.cond %if.end %for.inc %for.cond %for.end
+   --         [1].16.0:dpm -2
+   --         +-- phy_exit [1].0:dpm -1
+   --         `-- phy_power_off [1].0:dpm -1
+   neglect possible error
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_enable_resources [0/0]
+** 353ac0e6511df656b132a4138e318c71ce42641d
+   -- Case 1 (existing summary):
+   --     %entry %if.then %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.end4 %if.end8 %disable_regulator %return
+   --         [1].16.0:dpm -1
+   --         `-- ahci_platform_enable_phys [1].16.0:dpm -1
+   --             `-- phy_init [1].0:dpm -1
+   --         returns [0]
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_put_resources [0/0]
+** a4f46497123c0e1c180721a66d24e83a1c7be621
+   -- Case 1 (existing summary):
+   --     %entry %2 %for.cond %land.rhs %land.end %for.inc %for.cond %land.end %for.end
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.then %if.end %for.cond %land.rhs %land.end %for.body %for.inc %for.cond %land.end %for.end
+   --     %entry %2 %if.then %for.cond %land.rhs %land.end %for.inc %for.cond %land.end %for.end
    --         [1]:dpm -1
    --         `-- pm_runtime_put_sync [1]:dpm -1
+   imprecise branch condition tracking (FIX!)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_resume [0/0]
+** 97d67216828391ce82e22c6c707225f926b1c634
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then5 %disable_resources %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.then5 %disable_resources %return
+   --         {%call1}.5.16.0:dpm -2
+   --         +-- ahci_platform_disable_resources [1].16.0:dpm -1
+   --         |   `-- ahci_platform_disable_phys [1].16.0:dpm -1
+   --         |       `-- phy_exit [1].0:dpm -1
+   --         `-- ahci_platform_enable_resources [1].16.0:dpm -1
+   --             `-- ahci_platform_enable_phys [1].16.0:dpm -1
+   --                 `-- phy_init [1].0:dpm -1
+   --         returns [0]
+** f4cd7d16dad0be47e25dcddf79e8fac5fdc5e16a
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end11 %return
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %return
+   --         {%call1}.5.16.0:dpm -1
+   --         `-- ahci_platform_enable_resources [1].16.0:dpm -1
+   --             `-- ahci_platform_enable_phys [1].16.0:dpm -1
+   --                 `-- phy_init [1].0:dpm -1
+   --         returns 0
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/ata/libahci_platform.c ahci_platform_suspend [0/0]
+** f4cd7d16dad0be47e25dcddf79e8fac5fdc5e16a
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end11 %return
+   --         {%call1}.5.16.0:dpm -1
+   --         `-- ahci_platform_disable_resources [1].16.0:dpm -1
+   --             `-- ahci_platform_disable_phys [1].16.0:dpm -1
+   --                 `-- phy_exit [1].0:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end11 %return
+   --         returns 0

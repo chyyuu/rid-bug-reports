@@ -1,0 +1,12 @@
+#+TODO: TODO CHECK | BUG DUP
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/wm2200.c wm2200_set_fll [0/0]
+** ef9295af1dd5a30aea96cfa5c7d6b16ccfc83c6e
+   -- Case 1 (existing summary):
+   --     %entry %if.then10 %return
+   --         [1].0:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns 0
+   -- Case 2 (new summary):
+   --     %entry %return
+   --         returns 0
+   imprecise branch condition tracking

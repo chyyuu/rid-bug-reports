@@ -1,10 +1,14 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/gpu/drm/exynos/exynos_drm_g2d.c g2d_runqueue_worker [0/1]
-** TODO 9c19eb2927afa45e1b56bdf6e4af100d7aa20401
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/gpu/drm/exynos/exynos_drm_g2d.c g2d_resume [0/0]
+** 361048f5e4b6ffc1574c538608a8e2effc893245
    -- Case 1 (existing summary):
-   --     %entry %if.end %if.then5 %if.end7
-   --         [1].-runqueue_work.dev:dpm -1
-   --         `-- pm_runtime_put_sync [1]:dpm -1
+   --     %entry
+   --         returns 0
    -- Case 2 (new summary):
-   --     %entry %if.end %if.else %if.end7
-   --         -
+   --     %entry
+   --         {%call}.dev:dpm +1
+   --         `-- g2d_exec_runqueue [1].dev:dpm +1
+   --             `-- g2d_dma_start [1].dev:dpm +1
+   --                 `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns 0
+   imprecise summary tracking

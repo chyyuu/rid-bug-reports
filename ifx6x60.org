@@ -1,13 +1,25 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/tty/serial/ifx6x60.c ifx_spi_write [0/1]
-** TODO 81a73c29a135d56c0e9af61634492600b5a24183
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/tty/serial/ifx6x60.c ifx_spi_complete [0/0]
+** c1cfacf377d45123d59830b8fe119e2858d96b9d
    -- Case 1 (existing summary):
-   --     %entry %2 %do.body %do.body1 %do.end %do.end3 %if.end
-   --         returns [3]
+   --     %entry %2 %if.end55 %if.end90
+   --         -
    -- Case 2 (new summary):
-   --     %entry %2 %do.body %do.body1 %do.end %do.end3 %if.then %if.end
-   --         [1].35.0.0:dpm +1
+   --     %entry %2 %if.end55 %if.else86 %if.end90
+   --         [1].0.0:dpm +1
    --         `-- mrdy_assert [1].0.0:dpm +1
    --             `-- ifx_spi_power_state_set [1].0.0:dpm +1
    --                 `-- pm_runtime_get [1]:dpm +1
-   --         returns [3]
+   imprecise tracking of branch conditions (bitmap)
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/tty/serial/ifx6x60.c ifx_spi_io [0/0]
+** 7af350aa3aa352e07b5d1421049c078ea8d16c30
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.end38 %if.end49
+   --         [1].0.0:dpm +1
+   --         `-- mrdy_assert [1].0.0:dpm +1
+   --             `-- ifx_spi_power_state_set [1].0.0:dpm +1
+   --                 `-- pm_runtime_get [1]:dpm +1
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end49
+   --         -
+   imprecise tracking of branch conditions (bitmap)

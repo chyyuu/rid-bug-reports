@@ -1,23 +1,34 @@
 #+TODO: TODO CHECK | BUG DUP
 * /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-is.c fimc_is_probe [1/1]
-** BUG 3ffa435890cd90f70a62751deecb156882314905
+** BUG ba533d64943e6a75969e4dbcc058e8f83c22c69c
    -- Case 1 (existing summary):
-   --     %entry %if.end %do.body %do.end %do.body5 %do.body7 %do.end10 %do.end11 %do.body12 %do.end13 %if.then15 %return
+   --     %entry %do.end13 %if.end41 %if.end45 %if.then54 %err_irq %err_clk %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %do.body %do.end %do.body5 %do.body7 %do.end10 %do.end11 %do.body12 %do.end13 %if.end16 %if.end23 %if.end28 %if.end33 %if.end41 %if.end45 %if.end52 %if.end59 %if.then62 %err_pm %if.end97 %err_irq %err_clk %return
+   --     %entry %do.end13 %if.end41 %if.end45 %if.end59 %if.end70 %if.end74 %err_sd %err_vb %err_pm %err_irq %err_clk %return
    --         [1].dev:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
    @
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-isp.c fimc_isp_subdev_s_power [1/1]
-** BUG a88ae300944b72ce8d8d5e5e474fdbe71f5279d9
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-isp-video.c isp_video_open [1/1]
+** BUG 7bae482d81cdcecf6d652656dd3f29b22eb58dfa
    -- Case 1 (existing summary):
-   --     %entry %do.body %if.end %do.end %if.then4 %if.then6 %return
-   --         [1].11.-isp.pdev.dev:dpm +1
+   --     %entry %if.end %if.end5 %rel_fh %unlock %return
+   --         {%call}.pdev.dev:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %do.body %if.end %do.end %if.then4 %if.end7 %if.then10 %return
+   --     %entry %if.end %unlock %return
+   --         returns [0]
+   @
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/fimc-isp.c fimc_isp_subdev_s_power [1/1]
+** BUG ffa3e8fd60aa42cb996d43be02e878b45cef71e2
+   -- Case 1 (existing summary):
+   --     %entry %if.then4 %if.end7 %if.then10 %return
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %if.then4 %if.end7 %if.end15 %if.end58 %return
+   --         {%call}.-isp.pdev.dev:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns [0]
    @

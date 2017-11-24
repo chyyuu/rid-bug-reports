@@ -1,23 +1,12 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/media-dev.c fimc_md_probe [0/1]
-** TODO cdb74d08ce93ee8669917eceb80666ec2c414c42
+* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/media-dev.c fimc_md_register_sensor_entities [1/1]
+** BUG e7545e7f4eaa62454801a1fe3265ebaaeb0d5ae2
    -- Case 1 (existing summary):
-   --     %entry %if.end %do.body %do.body3 %do.end %do.end6 %if.then19 %return
+   --     %entry %if.end %if.end3 %for.cond %for.end %if.end22 %for.cond24 %for.end34 %rpm_put %return
    --         returns [0]
    -- Case 2 (new summary):
-   --     %entry %if.end %do.body %do.body3 %do.end %do.end6 %if.end23 %if.end31 %if.end35 %if.end43 %if.end51 %if.then54 %err_m_ent %err_md %err_v4l2_dev %return
-   --         {%call}.pmf:dpm +1
-   --         `-- fimc_md_register_sensor_entities [1].pmf:dpm +1
-   --             `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-* /home/mjj/linux/v3.17/build-arm-exynos/../drivers/media/platform/exynos4-is/media-dev.c fimc_md_register_sensor_entities [1/1]
-** BUG 18fce67186a67189d7622c11ec5edb8d73e1ba60
-   -- Case 1 (existing summary):
-   --     %entry %if.end %if.then2 %return
+   --     %entry %if.end %return
    --         [1].pmf:dpm +1
    --         `-- pm_runtime_get_sync [1]:dpm +1
-   --         returns [0]
-   -- Case 2 (new summary):
-   --     %entry %if.end %if.end3 %for.cond %for.body %if.end9 %if.end13 %if.then16 %rpm_put %return
    --         returns [0]
    @

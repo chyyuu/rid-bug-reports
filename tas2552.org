@@ -1,12 +1,12 @@
 #+TODO: TODO CHECK | BUG DUP
 * /home/mjj/linux/v3.17/build-allyes-nodebug/../sound/soc/codecs/tas2552.c tas2552_codec_probe [1/1]
-** BUG eeb3ee31e7071f1f1500a3561d03a386aad21532
+** BUG 66ca6d1833b877776f2cd1f5ef08fed54e29b3ee
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end6 %if.then10 %probe_fail %if.end33 %return
-   --         [1].0:dpm +1
-   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --     %entry %2 %if.end6 %patch_fail %return
    --         returns -5
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end6 %if.end13 %if.then22 %patch_fail %probe_fail %if.end33 %return
+   --     %entry %2 %if.end6 %return
+   --         [1].0:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
    --         returns -5
    @

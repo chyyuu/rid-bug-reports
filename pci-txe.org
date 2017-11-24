@@ -1,10 +1,11 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/misc/mei/pci-txe.c mei_txe_remove [0/1]
-** TODO bc118beb8b8e895755e564a49e4bfde9b0e39fd9
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/misc/mei/pci-txe.c mei_txe_remove [0/0]
+** 38503c003d198580d6bce1adc289191e3360de82
    -- Case 1 (existing summary):
-   --     %entry %2 %if.then %return
+   --     %entry %return
    --         -
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.end7 %return
+   --     %entry %if.end %return
    --         [1].43:dpm +1
    --         `-- pm_runtime_get_noresume [1]:dpm +1
+   imprecise summary tracking (FIX!)

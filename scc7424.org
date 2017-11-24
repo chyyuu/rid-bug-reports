@@ -1,21 +1,35 @@
 #+TODO: TODO CHECK | BUG DUP
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/intel/igb/igb_main.c __igb_close [0/1]
-** TODO eb4568698b0b798992979f744dddde58c8a43d5a
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/intel/igb/igb_main.c __igb_close [0/0]
+** f24c3a63b3bfb0b76c971a28c02c0db2d00e5745
    -- Case 1 (existing summary):
-   --     %entry %2 %if.end %if.end8 %if.end13
+   --     %entry %2 %if.then6 %if.then10 %if.end13
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %if.end %if.then6 %if.end8 %if.end13
-   --         [1].32.43:dpm +1
-   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --     %entry %2 %if.then10 %if.end13
+   --         {%call}.32.43:dpm -1
+   --         `-- pm_runtime_put_sync [1]:dpm -1
    --         returns 0
-* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/intel/igb/igb_main.c __igb_open [0/1]
-** TODO 00e4e7d229e371a567caee5846c3f6edce1cae31
+   imprecise branch condition tracking
+* /home/mjj/linux/v3.17/build-allyes-nodebug/../drivers/net/ethernet/intel/igb/igb_main.c __igb_open [0/0]
+** 76fd58af059625d393c0b6b573557eedf2c49d4d
    -- Case 1 (existing summary):
-   --     %entry %2 %cond.true %if.end11 %if.end15 %if.end19 %if.end23 %if.end27 %if.end32 %if.end37 %for.cond %for.end %if.end50 %if.end55 %return
+   --     %entry %2 %if.then13 %if.end15 %if.end19 %if.end23 %if.end27 %if.end32 %for.cond %for.inc %for.cond %if.then52 %return
    --         returns 0
    -- Case 2 (new summary):
-   --     %entry %2 %cond.true %if.end11 %if.then13 %if.end15 %if.end19 %if.end23 %if.end27 %if.end32 %if.end37 %for.cond %for.end %if.end50 %if.end55 %return
-   --         [1].32.43:dpm +1
-   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --     %entry %2 %if.end15 %if.end19 %if.end23 %if.end27 %if.end32 %for.cond %for.inc %for.cond %if.then52 %return
+   --         {%call}.32.43:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
    --         returns 0
+   imprecise branch condition tracking
+** 37f0a5cafff9a933851e720251c7860ed269b052
+   -- Case 1 (existing summary):
+   --     %entry %2 %if.then13 %if.end15 %if.end19 %if.end23 %if.end27 %err_set_queues %err_req_irq %err_setup_rx %err_setup_tx %return
+   --         {%call}.32.43:dpm +1
+   --         `-- pm_runtime_get_sync [1]:dpm +1
+   --         returns [0]
+   -- Case 2 (new summary):
+   --     %entry %2 %if.end15 %if.end19 %if.end23 %if.end27 %err_set_queues %err_req_irq %err_setup_rx %err_setup_tx %if.then58 %return
+   --         {%call}.32.43:dpm -1
+   --         `-- pm_runtime_put [1]:dpm -1
+   --         returns [0]
+   imprecise branch condition tracking
