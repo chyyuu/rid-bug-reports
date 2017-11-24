@@ -23,3 +23,16 @@ int __pm_runtime_resume(struct device *dev, int rpmflags)
         ...
 
 if !(rpmflags & RPM_ASYNC) && !dev->power.irq_safe, then have might_sleep BUG!!!
+
+
+
+
+很多driver developer不知道如何应对硬件错误的情况。需要有规范，框架提前设计出，可以指导开发者或检查
+
+特别关注kref, refcnt, 
+
+有些refcnt 直接用了 atomic_inc/dec，这种需要考虑如何分析
+
+
+update 5.0
+analysis kref, 用更弱的条件来分析错误路径
